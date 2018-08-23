@@ -29,60 +29,69 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.ComboBox_FormState = new System.Windows.Forms.ComboBox();
-            this.ComboBox_FormAction = new System.Windows.Forms.ComboBox();
-            this.ComboBox_FormStyle = new System.Windows.Forms.ComboBox();
+            this.ComboBox_FormStateEnum = new System.Windows.Forms.ComboBox();
+            this.ComboBox_FormActionEnum = new System.Windows.Forms.ComboBox();
+            this.ComboBox_FormStyleEnum = new System.Windows.Forms.ComboBox();
             this.CheckBox_EnableFullScreen = new System.Windows.Forms.CheckBox();
             this.CheckBox_ShowCaptionBarColor = new System.Windows.Forms.CheckBox();
             this.CheckBox_EnableCaptionBarTransparent = new System.Windows.Forms.CheckBox();
             this.ColorDialog_ThemeColor = new System.Windows.Forms.ColorDialog();
-            this.Button_ThemeColor = new System.Windows.Forms.Button();
-            this.ComboBox_Theme = new System.Windows.Forms.ComboBox();
+            this.ComboBox_ThemeEnum = new System.Windows.Forms.ComboBox();
             this.CheckBox_TopMost = new System.Windows.Forms.CheckBox();
             this.CheckBox_ShowInTaskbar = new System.Windows.Forms.CheckBox();
             this.FontDialog_CaptionFont = new System.Windows.Forms.FontDialog();
-            this.Button_CaptionFont = new System.Windows.Forms.Button();
-            this.ComboBox_CaptionAlign = new System.Windows.Forms.ComboBox();
+            this.ComboBox_CaptionAlignEnum = new System.Windows.Forms.ComboBox();
             this.CheckBox_ShowIconOnCaptionBar = new System.Windows.Forms.CheckBox();
             this.CheckBox_ShowShadowColor = new System.Windows.Forms.CheckBox();
             this.Panel_Main = new System.Windows.Forms.Panel();
+            this.Panel_Client = new System.Windows.Forms.Panel();
             this.Panel_FormStyle = new System.Windows.Forms.Panel();
             this.Label_FormStyle = new System.Windows.Forms.Label();
+            this.Label_FormStyleEnum = new System.Windows.Forms.Label();
             this.Panel_FormAppearance = new System.Windows.Forms.Panel();
             this.Label_FormAppearance = new System.Windows.Forms.Label();
+            this.Label_ThemeEnum = new System.Windows.Forms.Label();
+            this.Label_ThemeColor = new System.Windows.Forms.Label();
+            this.Label_ThemeColor_Value = new System.Windows.Forms.Label();
+            this.Label_CaptionFont = new System.Windows.Forms.Label();
+            this.Label_CaptionFont_Value = new System.Windows.Forms.Label();
+            this.Label_CaptionAlignEnum = new System.Windows.Forms.Label();
             this.Panel_FormState = new System.Windows.Forms.Panel();
             this.Label_FormState = new System.Windows.Forms.Label();
+            this.Label_FormStateEnum = new System.Windows.Forms.Label();
+            this.Label_FormActionEnum = new System.Windows.Forms.Label();
             this.Panel_Main.SuspendLayout();
+            this.Panel_Client.SuspendLayout();
             this.Panel_FormStyle.SuspendLayout();
             this.Panel_FormAppearance.SuspendLayout();
             this.Panel_FormState.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ComboBox_FormState
+            // ComboBox_FormStateEnum
             // 
-            this.ComboBox_FormState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_FormState.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ComboBox_FormState.FormattingEnabled = true;
-            this.ComboBox_FormState.Items.AddRange(new object[] {
+            this.ComboBox_FormStateEnum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_FormStateEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ComboBox_FormStateEnum.FormattingEnabled = true;
+            this.ComboBox_FormStateEnum.Items.AddRange(new object[] {
             "Normal",
             "Minimized",
             "Maximized",
             "FullScreen",
             "HighAsScreen",
             "QuarterScreen"});
-            this.ComboBox_FormState.Location = new System.Drawing.Point(15, 30);
-            this.ComboBox_FormState.Name = "ComboBox_FormState";
-            this.ComboBox_FormState.Size = new System.Drawing.Size(250, 25);
-            this.ComboBox_FormState.TabIndex = 0;
-            this.ComboBox_FormState.TabStop = false;
-            this.ComboBox_FormState.SelectedIndexChanged += new System.EventHandler(this.ComboBox_FormState_SelectedIndexChanged);
+            this.ComboBox_FormStateEnum.Location = new System.Drawing.Point(115, 30);
+            this.ComboBox_FormStateEnum.Name = "ComboBox_FormStateEnum";
+            this.ComboBox_FormStateEnum.Size = new System.Drawing.Size(150, 25);
+            this.ComboBox_FormStateEnum.TabIndex = 0;
+            this.ComboBox_FormStateEnum.TabStop = false;
+            this.ComboBox_FormStateEnum.SelectedIndexChanged += new System.EventHandler(this.ComboBox_FormStateEnum_SelectedIndexChanged);
             // 
-            // ComboBox_FormAction
+            // ComboBox_FormActionEnum
             // 
-            this.ComboBox_FormAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_FormAction.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ComboBox_FormAction.FormattingEnabled = true;
-            this.ComboBox_FormAction.Items.AddRange(new object[] {
+            this.ComboBox_FormActionEnum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_FormActionEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ComboBox_FormActionEnum.FormattingEnabled = true;
+            this.ComboBox_FormActionEnum.Items.AddRange(new object[] {
             "None",
             "Return",
             "Minimize",
@@ -97,28 +106,28 @@
             "BottomLeftQuarterScreen",
             "BottomRightQuarterScreen",
             "Close"});
-            this.ComboBox_FormAction.Location = new System.Drawing.Point(15, 60);
-            this.ComboBox_FormAction.Name = "ComboBox_FormAction";
-            this.ComboBox_FormAction.Size = new System.Drawing.Size(250, 25);
-            this.ComboBox_FormAction.TabIndex = 0;
-            this.ComboBox_FormAction.TabStop = false;
-            this.ComboBox_FormAction.SelectedIndexChanged += new System.EventHandler(this.ComboBox_FormAction_SelectedIndexChanged);
+            this.ComboBox_FormActionEnum.Location = new System.Drawing.Point(115, 60);
+            this.ComboBox_FormActionEnum.Name = "ComboBox_FormActionEnum";
+            this.ComboBox_FormActionEnum.Size = new System.Drawing.Size(150, 25);
+            this.ComboBox_FormActionEnum.TabIndex = 0;
+            this.ComboBox_FormActionEnum.TabStop = false;
+            this.ComboBox_FormActionEnum.SelectedIndexChanged += new System.EventHandler(this.ComboBox_FormActionEnum_SelectedIndexChanged);
             // 
-            // ComboBox_FormStyle
+            // ComboBox_FormStyleEnum
             // 
-            this.ComboBox_FormStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_FormStyle.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ComboBox_FormStyle.FormattingEnabled = true;
-            this.ComboBox_FormStyle.Items.AddRange(new object[] {
+            this.ComboBox_FormStyleEnum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_FormStyleEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ComboBox_FormStyleEnum.FormattingEnabled = true;
+            this.ComboBox_FormStyleEnum.Items.AddRange(new object[] {
             "Sizable",
             "Fixed",
             "Dialog"});
-            this.ComboBox_FormStyle.Location = new System.Drawing.Point(15, 30);
-            this.ComboBox_FormStyle.Name = "ComboBox_FormStyle";
-            this.ComboBox_FormStyle.Size = new System.Drawing.Size(250, 25);
-            this.ComboBox_FormStyle.TabIndex = 0;
-            this.ComboBox_FormStyle.TabStop = false;
-            this.ComboBox_FormStyle.SelectedIndexChanged += new System.EventHandler(this.ComboBox_FormStyle_SelectedIndexChanged);
+            this.ComboBox_FormStyleEnum.Location = new System.Drawing.Point(115, 30);
+            this.ComboBox_FormStyleEnum.Name = "ComboBox_FormStyleEnum";
+            this.ComboBox_FormStyleEnum.Size = new System.Drawing.Size(150, 25);
+            this.ComboBox_FormStyleEnum.TabIndex = 0;
+            this.ComboBox_FormStyleEnum.TabStop = false;
+            this.ComboBox_FormStyleEnum.SelectedIndexChanged += new System.EventHandler(this.ComboBox_FormStyleEnum_SelectedIndexChanged);
             // 
             // CheckBox_EnableFullScreen
             // 
@@ -141,7 +150,7 @@
             this.CheckBox_ShowCaptionBarColor.Checked = true;
             this.CheckBox_ShowCaptionBarColor.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_ShowCaptionBarColor.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.CheckBox_ShowCaptionBarColor.Location = new System.Drawing.Point(15, 150);
+            this.CheckBox_ShowCaptionBarColor.Location = new System.Drawing.Point(15, 140);
             this.CheckBox_ShowCaptionBarColor.Name = "CheckBox_ShowCaptionBarColor";
             this.CheckBox_ShowCaptionBarColor.Size = new System.Drawing.Size(155, 21);
             this.CheckBox_ShowCaptionBarColor.TabIndex = 0;
@@ -156,7 +165,7 @@
             this.CheckBox_EnableCaptionBarTransparent.Checked = true;
             this.CheckBox_EnableCaptionBarTransparent.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_EnableCaptionBarTransparent.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.CheckBox_EnableCaptionBarTransparent.Location = new System.Drawing.Point(15, 175);
+            this.CheckBox_EnableCaptionBarTransparent.Location = new System.Drawing.Point(15, 165);
             this.CheckBox_EnableCaptionBarTransparent.Name = "CheckBox_EnableCaptionBarTransparent";
             this.CheckBox_EnableCaptionBarTransparent.Size = new System.Drawing.Size(201, 21);
             this.CheckBox_EnableCaptionBarTransparent.TabIndex = 0;
@@ -169,38 +178,23 @@
             // 
             this.ColorDialog_ThemeColor.FullOpen = true;
             // 
-            // Button_ThemeColor
+            // ComboBox_ThemeEnum
             // 
-            this.Button_ThemeColor.AutoEllipsis = true;
-            this.Button_ThemeColor.FlatAppearance.BorderSize = 0;
-            this.Button_ThemeColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_ThemeColor.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Button_ThemeColor.Location = new System.Drawing.Point(15, 60);
-            this.Button_ThemeColor.Name = "Button_ThemeColor";
-            this.Button_ThemeColor.Size = new System.Drawing.Size(250, 25);
-            this.Button_ThemeColor.TabIndex = 0;
-            this.Button_ThemeColor.TabStop = false;
-            this.Button_ThemeColor.Text = "ThemeColor";
-            this.Button_ThemeColor.UseVisualStyleBackColor = true;
-            this.Button_ThemeColor.Click += new System.EventHandler(this.Button_ThemeColor_Click);
-            // 
-            // ComboBox_Theme
-            // 
-            this.ComboBox_Theme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_Theme.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ComboBox_Theme.FormattingEnabled = true;
-            this.ComboBox_Theme.Items.AddRange(new object[] {
+            this.ComboBox_ThemeEnum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_ThemeEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ComboBox_ThemeEnum.FormattingEnabled = true;
+            this.ComboBox_ThemeEnum.Items.AddRange(new object[] {
             "Colorful",
             "White",
             "LightGray",
             "DarkGray",
             "Black"});
-            this.ComboBox_Theme.Location = new System.Drawing.Point(15, 30);
-            this.ComboBox_Theme.Name = "ComboBox_Theme";
-            this.ComboBox_Theme.Size = new System.Drawing.Size(250, 25);
-            this.ComboBox_Theme.TabIndex = 0;
-            this.ComboBox_Theme.TabStop = false;
-            this.ComboBox_Theme.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Theme_SelectedIndexChanged);
+            this.ComboBox_ThemeEnum.Location = new System.Drawing.Point(115, 30);
+            this.ComboBox_ThemeEnum.Name = "ComboBox_ThemeEnum";
+            this.ComboBox_ThemeEnum.Size = new System.Drawing.Size(150, 25);
+            this.ComboBox_ThemeEnum.TabIndex = 0;
+            this.ComboBox_ThemeEnum.TabStop = false;
+            this.ComboBox_ThemeEnum.SelectedIndexChanged += new System.EventHandler(this.ComboBox_ThemeEnum_SelectedIndexChanged);
             // 
             // CheckBox_TopMost
             // 
@@ -230,27 +224,12 @@
             this.CheckBox_ShowInTaskbar.UseVisualStyleBackColor = true;
             this.CheckBox_ShowInTaskbar.CheckedChanged += new System.EventHandler(this.CheckBox_ShowInTaskbar_CheckedChanged);
             // 
-            // Button_CaptionFont
+            // ComboBox_CaptionAlignEnum
             // 
-            this.Button_CaptionFont.AutoEllipsis = true;
-            this.Button_CaptionFont.FlatAppearance.BorderSize = 0;
-            this.Button_CaptionFont.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_CaptionFont.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.Button_CaptionFont.Location = new System.Drawing.Point(15, 90);
-            this.Button_CaptionFont.Name = "Button_CaptionFont";
-            this.Button_CaptionFont.Size = new System.Drawing.Size(250, 25);
-            this.Button_CaptionFont.TabIndex = 0;
-            this.Button_CaptionFont.TabStop = false;
-            this.Button_CaptionFont.Text = "CaptionFont";
-            this.Button_CaptionFont.UseVisualStyleBackColor = true;
-            this.Button_CaptionFont.Click += new System.EventHandler(this.Button_CaptionFont_Click);
-            // 
-            // ComboBox_CaptionAlign
-            // 
-            this.ComboBox_CaptionAlign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_CaptionAlign.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ComboBox_CaptionAlign.FormattingEnabled = true;
-            this.ComboBox_CaptionAlign.Items.AddRange(new object[] {
+            this.ComboBox_CaptionAlignEnum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_CaptionAlignEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ComboBox_CaptionAlignEnum.FormattingEnabled = true;
+            this.ComboBox_CaptionAlignEnum.Items.AddRange(new object[] {
             "TopLeft",
             "TopCenter",
             "TopRight",
@@ -260,12 +239,12 @@
             "BottomLeft",
             "BottomCenter",
             "BottomRight"});
-            this.ComboBox_CaptionAlign.Location = new System.Drawing.Point(15, 120);
-            this.ComboBox_CaptionAlign.Name = "ComboBox_CaptionAlign";
-            this.ComboBox_CaptionAlign.Size = new System.Drawing.Size(250, 25);
-            this.ComboBox_CaptionAlign.TabIndex = 0;
-            this.ComboBox_CaptionAlign.TabStop = false;
-            this.ComboBox_CaptionAlign.SelectedIndexChanged += new System.EventHandler(this.ComboBox_CaptionAlign_SelectedIndexChanged);
+            this.ComboBox_CaptionAlignEnum.Location = new System.Drawing.Point(115, 110);
+            this.ComboBox_CaptionAlignEnum.Name = "ComboBox_CaptionAlignEnum";
+            this.ComboBox_CaptionAlignEnum.Size = new System.Drawing.Size(150, 25);
+            this.ComboBox_CaptionAlignEnum.TabIndex = 0;
+            this.ComboBox_CaptionAlignEnum.TabStop = false;
+            this.ComboBox_CaptionAlignEnum.SelectedIndexChanged += new System.EventHandler(this.ComboBox_CaptionAlignEnum_SelectedIndexChanged);
             // 
             // CheckBox_ShowIconOnCaptionBar
             // 
@@ -288,7 +267,7 @@
             this.CheckBox_ShowShadowColor.Checked = true;
             this.CheckBox_ShowShadowColor.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_ShowShadowColor.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.CheckBox_ShowShadowColor.Location = new System.Drawing.Point(15, 200);
+            this.CheckBox_ShowShadowColor.Location = new System.Drawing.Point(15, 190);
             this.CheckBox_ShowShadowColor.Name = "CheckBox_ShowShadowColor";
             this.CheckBox_ShowShadowColor.Size = new System.Drawing.Size(136, 21);
             this.CheckBox_ShowShadowColor.TabIndex = 0;
@@ -299,20 +278,30 @@
             // 
             // Panel_Main
             // 
+            this.Panel_Main.AutoScroll = true;
             this.Panel_Main.BackColor = System.Drawing.Color.Transparent;
-            this.Panel_Main.Controls.Add(this.Panel_FormStyle);
-            this.Panel_Main.Controls.Add(this.Panel_FormAppearance);
-            this.Panel_Main.Controls.Add(this.Panel_FormState);
+            this.Panel_Main.Controls.Add(this.Panel_Client);
             this.Panel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Main.Location = new System.Drawing.Point(0, 0);
             this.Panel_Main.Name = "Panel_Main";
-            this.Panel_Main.Size = new System.Drawing.Size(330, 540);
+            this.Panel_Main.Size = new System.Drawing.Size(330, 530);
             this.Panel_Main.TabIndex = 0;
+            // 
+            // Panel_Client
+            // 
+            this.Panel_Client.Controls.Add(this.Panel_FormStyle);
+            this.Panel_Client.Controls.Add(this.Panel_FormAppearance);
+            this.Panel_Client.Controls.Add(this.Panel_FormState);
+            this.Panel_Client.Location = new System.Drawing.Point(0, 0);
+            this.Panel_Client.Name = "Panel_Client";
+            this.Panel_Client.Size = new System.Drawing.Size(330, 530);
+            this.Panel_Client.TabIndex = 0;
             // 
             // Panel_FormStyle
             // 
             this.Panel_FormStyle.Controls.Add(this.Label_FormStyle);
-            this.Panel_FormStyle.Controls.Add(this.ComboBox_FormStyle);
+            this.Panel_FormStyle.Controls.Add(this.Label_FormStyleEnum);
+            this.Panel_FormStyle.Controls.Add(this.ComboBox_FormStyleEnum);
             this.Panel_FormStyle.Controls.Add(this.CheckBox_EnableFullScreen);
             this.Panel_FormStyle.Controls.Add(this.CheckBox_ShowIconOnCaptionBar);
             this.Panel_FormStyle.Controls.Add(this.CheckBox_TopMost);
@@ -333,19 +322,33 @@
             this.Label_FormStyle.TabIndex = 0;
             this.Label_FormStyle.Text = "FormStyle";
             // 
+            // Label_FormStyleEnum
+            // 
+            this.Label_FormStyleEnum.AutoSize = true;
+            this.Label_FormStyleEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_FormStyleEnum.Location = new System.Drawing.Point(15, 34);
+            this.Label_FormStyleEnum.Name = "Label_FormStyleEnum";
+            this.Label_FormStyleEnum.Size = new System.Drawing.Size(68, 17);
+            this.Label_FormStyleEnum.TabIndex = 0;
+            this.Label_FormStyleEnum.Text = "FormStyle:";
+            // 
             // Panel_FormAppearance
             // 
             this.Panel_FormAppearance.Controls.Add(this.Label_FormAppearance);
-            this.Panel_FormAppearance.Controls.Add(this.ComboBox_Theme);
-            this.Panel_FormAppearance.Controls.Add(this.Button_ThemeColor);
-            this.Panel_FormAppearance.Controls.Add(this.Button_CaptionFont);
-            this.Panel_FormAppearance.Controls.Add(this.ComboBox_CaptionAlign);
+            this.Panel_FormAppearance.Controls.Add(this.Label_ThemeEnum);
+            this.Panel_FormAppearance.Controls.Add(this.ComboBox_ThemeEnum);
+            this.Panel_FormAppearance.Controls.Add(this.Label_ThemeColor);
+            this.Panel_FormAppearance.Controls.Add(this.Label_ThemeColor_Value);
+            this.Panel_FormAppearance.Controls.Add(this.Label_CaptionFont);
+            this.Panel_FormAppearance.Controls.Add(this.Label_CaptionFont_Value);
+            this.Panel_FormAppearance.Controls.Add(this.Label_CaptionAlignEnum);
+            this.Panel_FormAppearance.Controls.Add(this.ComboBox_CaptionAlignEnum);
             this.Panel_FormAppearance.Controls.Add(this.CheckBox_ShowCaptionBarColor);
             this.Panel_FormAppearance.Controls.Add(this.CheckBox_EnableCaptionBarTransparent);
             this.Panel_FormAppearance.Controls.Add(this.CheckBox_ShowShadowColor);
             this.Panel_FormAppearance.Location = new System.Drawing.Point(25, 190);
             this.Panel_FormAppearance.Name = "Panel_FormAppearance";
-            this.Panel_FormAppearance.Size = new System.Drawing.Size(280, 230);
+            this.Panel_FormAppearance.Size = new System.Drawing.Size(280, 220);
             this.Panel_FormAppearance.TabIndex = 0;
             this.Panel_FormAppearance.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_FormAppearance_Paint);
             // 
@@ -359,12 +362,74 @@
             this.Label_FormAppearance.TabIndex = 0;
             this.Label_FormAppearance.Text = "FormAppearance";
             // 
+            // Label_ThemeEnum
+            // 
+            this.Label_ThemeEnum.AutoSize = true;
+            this.Label_ThemeEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_ThemeEnum.Location = new System.Drawing.Point(15, 34);
+            this.Label_ThemeEnum.Name = "Label_ThemeEnum";
+            this.Label_ThemeEnum.Size = new System.Drawing.Size(50, 17);
+            this.Label_ThemeEnum.TabIndex = 0;
+            this.Label_ThemeEnum.Text = "Theme:";
+            // 
+            // Label_ThemeColor
+            // 
+            this.Label_ThemeColor.AutoSize = true;
+            this.Label_ThemeColor.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_ThemeColor.Location = new System.Drawing.Point(15, 60);
+            this.Label_ThemeColor.Name = "Label_ThemeColor";
+            this.Label_ThemeColor.Size = new System.Drawing.Size(82, 17);
+            this.Label_ThemeColor.TabIndex = 0;
+            this.Label_ThemeColor.Text = "ThemeColor:";
+            // 
+            // Label_ThemeColor_Value
+            // 
+            this.Label_ThemeColor_Value.AutoSize = true;
+            this.Label_ThemeColor_Value.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_ThemeColor_Value.Location = new System.Drawing.Point(115, 60);
+            this.Label_ThemeColor_Value.Name = "Label_ThemeColor_Value";
+            this.Label_ThemeColor_Value.Size = new System.Drawing.Size(79, 17);
+            this.Label_ThemeColor_Value.TabIndex = 0;
+            this.Label_ThemeColor_Value.Text = "ThemeColor";
+            // 
+            // Label_CaptionFont
+            // 
+            this.Label_CaptionFont.AutoSize = true;
+            this.Label_CaptionFont.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_CaptionFont.Location = new System.Drawing.Point(15, 85);
+            this.Label_CaptionFont.Name = "Label_CaptionFont";
+            this.Label_CaptionFont.Size = new System.Drawing.Size(81, 17);
+            this.Label_CaptionFont.TabIndex = 0;
+            this.Label_CaptionFont.Text = "CaptionFont:";
+            // 
+            // Label_CaptionFont_Value
+            // 
+            this.Label_CaptionFont_Value.AutoSize = true;
+            this.Label_CaptionFont_Value.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_CaptionFont_Value.Location = new System.Drawing.Point(115, 85);
+            this.Label_CaptionFont_Value.Name = "Label_CaptionFont_Value";
+            this.Label_CaptionFont_Value.Size = new System.Drawing.Size(78, 17);
+            this.Label_CaptionFont_Value.TabIndex = 0;
+            this.Label_CaptionFont_Value.Text = "CaptionFont";
+            // 
+            // Label_CaptionAlignEnum
+            // 
+            this.Label_CaptionAlignEnum.AutoSize = true;
+            this.Label_CaptionAlignEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_CaptionAlignEnum.Location = new System.Drawing.Point(15, 114);
+            this.Label_CaptionAlignEnum.Name = "Label_CaptionAlignEnum";
+            this.Label_CaptionAlignEnum.Size = new System.Drawing.Size(85, 17);
+            this.Label_CaptionAlignEnum.TabIndex = 0;
+            this.Label_CaptionAlignEnum.Text = "CaptionAlign:";
+            // 
             // Panel_FormState
             // 
             this.Panel_FormState.Controls.Add(this.Label_FormState);
-            this.Panel_FormState.Controls.Add(this.ComboBox_FormState);
-            this.Panel_FormState.Controls.Add(this.ComboBox_FormAction);
-            this.Panel_FormState.Location = new System.Drawing.Point(25, 420);
+            this.Panel_FormState.Controls.Add(this.Label_FormStateEnum);
+            this.Panel_FormState.Controls.Add(this.ComboBox_FormStateEnum);
+            this.Panel_FormState.Controls.Add(this.Label_FormActionEnum);
+            this.Panel_FormState.Controls.Add(this.ComboBox_FormActionEnum);
+            this.Panel_FormState.Location = new System.Drawing.Point(25, 410);
             this.Panel_FormState.Name = "Panel_FormState";
             this.Panel_FormState.Size = new System.Drawing.Size(280, 95);
             this.Panel_FormState.TabIndex = 0;
@@ -380,18 +445,39 @@
             this.Label_FormState.TabIndex = 0;
             this.Label_FormState.Text = "FormState";
             // 
+            // Label_FormStateEnum
+            // 
+            this.Label_FormStateEnum.AutoSize = true;
+            this.Label_FormStateEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_FormStateEnum.Location = new System.Drawing.Point(15, 34);
+            this.Label_FormStateEnum.Name = "Label_FormStateEnum";
+            this.Label_FormStateEnum.Size = new System.Drawing.Size(70, 17);
+            this.Label_FormStateEnum.TabIndex = 0;
+            this.Label_FormStateEnum.Text = "FormState:";
+            // 
+            // Label_FormActionEnum
+            // 
+            this.Label_FormActionEnum.AutoSize = true;
+            this.Label_FormActionEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_FormActionEnum.Location = new System.Drawing.Point(15, 64);
+            this.Label_FormActionEnum.Name = "Label_FormActionEnum";
+            this.Label_FormActionEnum.Size = new System.Drawing.Size(77, 17);
+            this.Label_FormActionEnum.TabIndex = 0;
+            this.Label_FormActionEnum.Text = "FormAction:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(330, 540);
+            this.ClientSize = new System.Drawing.Size(330, 530);
             this.Controls.Add(this.Panel_Main);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "主窗体";
             this.Panel_Main.ResumeLayout(false);
+            this.Panel_Client.ResumeLayout(false);
             this.Panel_FormStyle.ResumeLayout(false);
             this.Panel_FormStyle.PerformLayout();
             this.Panel_FormAppearance.ResumeLayout(false);
@@ -404,20 +490,18 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox ComboBox_FormState;
-        private System.Windows.Forms.ComboBox ComboBox_FormAction;
-        private System.Windows.Forms.ComboBox ComboBox_FormStyle;
+        private System.Windows.Forms.ComboBox ComboBox_FormStateEnum;
+        private System.Windows.Forms.ComboBox ComboBox_FormActionEnum;
+        private System.Windows.Forms.ComboBox ComboBox_FormStyleEnum;
         private System.Windows.Forms.CheckBox CheckBox_EnableFullScreen;
         private System.Windows.Forms.CheckBox CheckBox_ShowCaptionBarColor;
         private System.Windows.Forms.CheckBox CheckBox_EnableCaptionBarTransparent;
         private System.Windows.Forms.ColorDialog ColorDialog_ThemeColor;
-        private System.Windows.Forms.Button Button_ThemeColor;
-        private System.Windows.Forms.ComboBox ComboBox_Theme;
+        private System.Windows.Forms.ComboBox ComboBox_ThemeEnum;
         private System.Windows.Forms.CheckBox CheckBox_TopMost;
         private System.Windows.Forms.CheckBox CheckBox_ShowInTaskbar;
         private System.Windows.Forms.FontDialog FontDialog_CaptionFont;
-        private System.Windows.Forms.Button Button_CaptionFont;
-        private System.Windows.Forms.ComboBox ComboBox_CaptionAlign;
+        private System.Windows.Forms.ComboBox ComboBox_CaptionAlignEnum;
         private System.Windows.Forms.CheckBox CheckBox_ShowIconOnCaptionBar;
         private System.Windows.Forms.CheckBox CheckBox_ShowShadowColor;
         private System.Windows.Forms.Panel Panel_Main;
@@ -427,5 +511,15 @@
         private System.Windows.Forms.Label Label_FormState;
         private System.Windows.Forms.Panel Panel_FormAppearance;
         private System.Windows.Forms.Label Label_FormAppearance;
+        private System.Windows.Forms.Panel Panel_Client;
+        private System.Windows.Forms.Label Label_FormStyleEnum;
+        private System.Windows.Forms.Label Label_ThemeEnum;
+        private System.Windows.Forms.Label Label_CaptionAlignEnum;
+        private System.Windows.Forms.Label Label_FormActionEnum;
+        private System.Windows.Forms.Label Label_FormStateEnum;
+        private System.Windows.Forms.Label Label_ThemeColor_Value;
+        private System.Windows.Forms.Label Label_ThemeColor;
+        private System.Windows.Forms.Label Label_CaptionFont;
+        private System.Windows.Forms.Label Label_CaptionFont_Value;
     }
 }

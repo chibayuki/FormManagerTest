@@ -102,9 +102,9 @@ namespace WinFormApp
 
             //
 
-            ComboBox_FormStyle.SelectedIndexChanged -= ComboBox_FormStyle_SelectedIndexChanged;
-            ComboBox_FormStyle.SelectedIndex = (int)Me.FormStyle;
-            ComboBox_FormStyle.SelectedIndexChanged += ComboBox_FormStyle_SelectedIndexChanged;
+            ComboBox_FormStyleEnum.SelectedIndexChanged -= ComboBox_FormStyleEnum_SelectedIndexChanged;
+            ComboBox_FormStyleEnum.SelectedIndex = (int)Me.FormStyle;
+            ComboBox_FormStyleEnum.SelectedIndexChanged += ComboBox_FormStyleEnum_SelectedIndexChanged;
 
             CheckBox_EnableFullScreen.CheckedChanged -= CheckBox_EnableFullScreen_CheckedChanged;
             CheckBox_ShowIconOnCaptionBar.CheckedChanged -= CheckBox_ShowIconOnCaptionBar_CheckedChanged;
@@ -121,28 +121,28 @@ namespace WinFormApp
 
             //
 
-            ComboBox_Theme.SelectedIndexChanged -= ComboBox_Theme_SelectedIndexChanged;
-            ComboBox_Theme.SelectedIndex = (int)Me.Theme;
-            ComboBox_Theme.SelectedIndexChanged += ComboBox_Theme_SelectedIndexChanged;
+            ComboBox_ThemeEnum.SelectedIndexChanged -= ComboBox_ThemeEnum_SelectedIndexChanged;
+            ComboBox_ThemeEnum.SelectedIndex = (int)Me.Theme;
+            ComboBox_ThemeEnum.SelectedIndexChanged += ComboBox_ThemeEnum_SelectedIndexChanged;
 
-            Button_ThemeColor.Text = "ThemeColor: " + Com.ColorManipulation.GetColorName(Me.ThemeColor);
+            Label_ThemeColor_Value.Text = Com.ColorManipulation.GetColorName(Me.ThemeColor);
 
-            Button_CaptionFont.Text = string.Concat("CaptionFont: ", Me.CaptionFont.Name, ", ", Me.CaptionFont.Size, "pt", (Me.CaptionFont.Bold ? ", Bold" : string.Empty), (Me.CaptionFont.Italic ? ", Italic" : string.Empty), (Me.CaptionFont.Strikeout ? ", Strikeout" : string.Empty), (Me.CaptionFont.Underline ? ", Underline" : string.Empty));
+            Label_CaptionFont_Value.Text = string.Concat(Me.CaptionFont.Name, ", ", Me.CaptionFont.Size, "pt", (Me.CaptionFont.Style != FontStyle.Regular ? string.Concat(", ", (Me.CaptionFont.Bold ? "B" : string.Empty), (Me.CaptionFont.Italic ? "I" : string.Empty), (Me.CaptionFont.Strikeout ? "S" : string.Empty), (Me.CaptionFont.Underline ? "U" : string.Empty)) : string.Empty));
 
-            ComboBox_CaptionAlign.SelectedIndexChanged -= ComboBox_CaptionAlign_SelectedIndexChanged;
+            ComboBox_CaptionAlignEnum.SelectedIndexChanged -= ComboBox_CaptionAlignEnum_SelectedIndexChanged;
             switch (Me.CaptionAlign)
             {
-                case ContentAlignment.TopLeft: ComboBox_CaptionAlign.SelectedIndex = 0; break;
-                case ContentAlignment.TopCenter: ComboBox_CaptionAlign.SelectedIndex = 1; break;
-                case ContentAlignment.TopRight: ComboBox_CaptionAlign.SelectedIndex = 2; break;
-                case ContentAlignment.MiddleLeft: ComboBox_CaptionAlign.SelectedIndex = 3; break;
-                case ContentAlignment.MiddleCenter: ComboBox_CaptionAlign.SelectedIndex = 4; break;
-                case ContentAlignment.MiddleRight: ComboBox_CaptionAlign.SelectedIndex = 5; break;
-                case ContentAlignment.BottomLeft: ComboBox_CaptionAlign.SelectedIndex = 6; break;
-                case ContentAlignment.BottomCenter: ComboBox_CaptionAlign.SelectedIndex = 7; break;
-                case ContentAlignment.BottomRight: ComboBox_CaptionAlign.SelectedIndex = 8; break;
+                case ContentAlignment.TopLeft: ComboBox_CaptionAlignEnum.SelectedIndex = 0; break;
+                case ContentAlignment.TopCenter: ComboBox_CaptionAlignEnum.SelectedIndex = 1; break;
+                case ContentAlignment.TopRight: ComboBox_CaptionAlignEnum.SelectedIndex = 2; break;
+                case ContentAlignment.MiddleLeft: ComboBox_CaptionAlignEnum.SelectedIndex = 3; break;
+                case ContentAlignment.MiddleCenter: ComboBox_CaptionAlignEnum.SelectedIndex = 4; break;
+                case ContentAlignment.MiddleRight: ComboBox_CaptionAlignEnum.SelectedIndex = 5; break;
+                case ContentAlignment.BottomLeft: ComboBox_CaptionAlignEnum.SelectedIndex = 6; break;
+                case ContentAlignment.BottomCenter: ComboBox_CaptionAlignEnum.SelectedIndex = 7; break;
+                case ContentAlignment.BottomRight: ComboBox_CaptionAlignEnum.SelectedIndex = 8; break;
             }
-            ComboBox_CaptionAlign.SelectedIndexChanged += ComboBox_CaptionAlign_SelectedIndexChanged;
+            ComboBox_CaptionAlignEnum.SelectedIndexChanged += ComboBox_CaptionAlignEnum_SelectedIndexChanged;
 
             CheckBox_ShowCaptionBarColor.CheckedChanged -= CheckBox_ShowCaptionBarColor_CheckedChanged;
             CheckBox_EnableCaptionBarTransparent.CheckedChanged -= CheckBox_EnableCaptionBarTransparent_CheckedChanged;
@@ -157,27 +157,28 @@ namespace WinFormApp
 
             //
 
-            ComboBox_FormState.SelectedIndexChanged -= ComboBox_FormState_SelectedIndexChanged;
-            ComboBox_FormAction.SelectedIndexChanged -= ComboBox_FormAction_SelectedIndexChanged;
-            ComboBox_FormState.SelectedIndex = (int)Me.FormState;
-            ComboBox_FormAction.SelectedIndex = 0;
-            ComboBox_FormState.SelectedIndexChanged += ComboBox_FormState_SelectedIndexChanged;
-            ComboBox_FormAction.SelectedIndexChanged += ComboBox_FormAction_SelectedIndexChanged;
+            ComboBox_FormStateEnum.SelectedIndexChanged -= ComboBox_FormStateEnum_SelectedIndexChanged;
+            ComboBox_FormActionEnum.SelectedIndexChanged -= ComboBox_FormActionEnum_SelectedIndexChanged;
+            ComboBox_FormStateEnum.SelectedIndex = (int)Me.FormState;
+            ComboBox_FormActionEnum.SelectedIndex = 0;
+            ComboBox_FormStateEnum.SelectedIndexChanged += ComboBox_FormStateEnum_SelectedIndexChanged;
+            ComboBox_FormActionEnum.SelectedIndexChanged += ComboBox_FormActionEnum_SelectedIndexChanged;
         }
 
         private void FormStateChangedEvents(object sender, EventArgs e)
         {
-            ComboBox_FormState.SelectedIndexChanged -= ComboBox_FormState_SelectedIndexChanged;
-            ComboBox_FormState.SelectedIndex = (int)Me.FormState;
-            ComboBox_FormState.SelectedIndexChanged += ComboBox_FormState_SelectedIndexChanged;
+            ComboBox_FormStateEnum.SelectedIndexChanged -= ComboBox_FormStateEnum_SelectedIndexChanged;
+            ComboBox_FormStateEnum.SelectedIndex = (int)Me.FormState;
+            ComboBox_FormStateEnum.SelectedIndexChanged += ComboBox_FormStateEnum_SelectedIndexChanged;
         }
 
         private void ThemeChangedEvents(object sender, EventArgs e)
         {
             Label_FormStyle.ForeColor = Me.RecommendColors.Text_INC.ToColor();
 
-            ComboBox_FormStyle.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
-            ComboBox_FormStyle.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
+            Label_FormStyleEnum.ForeColor = Me.RecommendColors.Text.ToColor();
+            ComboBox_FormStyleEnum.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
+            ComboBox_FormStyleEnum.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
 
             CheckBox_EnableFullScreen.ForeColor = Me.RecommendColors.Text.ToColor();
             CheckBox_ShowIconOnCaptionBar.ForeColor = Me.RecommendColors.Text.ToColor();
@@ -188,23 +189,17 @@ namespace WinFormApp
 
             Label_FormAppearance.ForeColor = Me.RecommendColors.Text_INC.ToColor();
 
-            ComboBox_Theme.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
-            ComboBox_Theme.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
+            Label_ThemeEnum.ForeColor = Me.RecommendColors.Text.ToColor();
+            ComboBox_ThemeEnum.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
+            ComboBox_ThemeEnum.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
 
-            Button_ThemeColor.ForeColor = Me.RecommendColors.Text.ToColor();
-            Button_ThemeColor.BackColor = Me.RecommendColors.Button.ToColor();
-            Button_ThemeColor.FlatAppearance.BorderColor = Me.RecommendColors.Button.ToColor();
-            Button_ThemeColor.FlatAppearance.MouseOverBackColor = Me.RecommendColors.Button_DEC.ToColor();
-            Button_ThemeColor.FlatAppearance.MouseDownBackColor = Me.RecommendColors.Button_INC.ToColor();
+            Label_ThemeColor.ForeColor = Label_ThemeColor_Value.ForeColor = Me.RecommendColors.Text.ToColor();
 
-            Button_CaptionFont.ForeColor = Me.RecommendColors.Text.ToColor();
-            Button_CaptionFont.BackColor = Me.RecommendColors.Button.ToColor();
-            Button_CaptionFont.FlatAppearance.BorderColor = Me.RecommendColors.Button.ToColor();
-            Button_CaptionFont.FlatAppearance.MouseOverBackColor = Me.RecommendColors.Button_DEC.ToColor();
-            Button_CaptionFont.FlatAppearance.MouseDownBackColor = Me.RecommendColors.Button_INC.ToColor();
+            Label_CaptionFont.ForeColor = Label_CaptionFont_Value.ForeColor = Me.RecommendColors.Text.ToColor();
 
-            ComboBox_CaptionAlign.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
-            ComboBox_CaptionAlign.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
+            Label_CaptionAlignEnum.ForeColor = Me.RecommendColors.Text.ToColor();
+            ComboBox_CaptionAlignEnum.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
+            ComboBox_CaptionAlignEnum.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
 
             CheckBox_ShowCaptionBarColor.ForeColor = Me.RecommendColors.Text.ToColor();
             CheckBox_EnableCaptionBarTransparent.ForeColor = Me.RecommendColors.Text.ToColor();
@@ -215,18 +210,25 @@ namespace WinFormApp
 
             Label_FormState.ForeColor = Me.RecommendColors.Text_INC.ToColor();
 
-            ComboBox_FormState.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
-            ComboBox_FormState.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
+            Label_FormStateEnum.ForeColor = Me.RecommendColors.Text.ToColor();
+            ComboBox_FormStateEnum.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
+            ComboBox_FormStateEnum.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
 
-            ComboBox_FormAction.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
-            ComboBox_FormAction.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
+            Label_FormActionEnum.ForeColor = Me.RecommendColors.Text.ToColor();
+            ComboBox_FormActionEnum.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
+            ComboBox_FormActionEnum.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
+
+            //
+
+            Com.WinForm.ControlSubstitution.LabelAsButton(Label_ThemeColor_Value, Label_ThemeColor_Value_Click, Color.Transparent, Me.RecommendColors.Button_DEC.ToColor(), Me.RecommendColors.Button_INC.ToColor(), new Font("微软雅黑", 9F, FontStyle.Underline, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134));
+            Com.WinForm.ControlSubstitution.LabelAsButton(Label_CaptionFont_Value, Label_CaptionFont_Value_Click, Color.Transparent, Me.RecommendColors.Button_DEC.ToColor(), Me.RecommendColors.Button_INC.ToColor(), new Font("微软雅黑", 9F, FontStyle.Underline, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134));
         }
 
         #endregion
 
         #region 回调函数
 
-        private void ComboBox_FormStyle_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_FormStyleEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
             Me.FormStyle = (Com.WinForm.FormStyle)((ComboBox)sender).SelectedIndex;
         }
@@ -251,34 +253,34 @@ namespace WinFormApp
             Me.ShowInTaskbar = ((CheckBox)sender).Checked;
         }
 
-        private void ComboBox_Theme_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_ThemeEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
             Me.Theme = (Com.WinForm.Theme)((ComboBox)sender).SelectedIndex;
         }
 
-        private void Button_ThemeColor_Click(object sender, EventArgs e)
+        private void Label_ThemeColor_Value_Click(object sender, EventArgs e)
         {
             ColorDialog_ThemeColor.Color = Me.ThemeColor.ToColor();
 
             if (ColorDialog_ThemeColor.ShowDialog() == DialogResult.OK)
             {
                 Me.ThemeColor = new Com.ColorX(ColorDialog_ThemeColor.Color);
-                Button_ThemeColor.Text = "ThemeColor: " + Com.ColorManipulation.GetColorName(Me.ThemeColor);
+                Label_ThemeColor_Value.Text = Com.ColorManipulation.GetColorName(Me.ThemeColor);
             }
         }
 
-        private void Button_CaptionFont_Click(object sender, EventArgs e)
+        private void Label_CaptionFont_Value_Click(object sender, EventArgs e)
         {
             FontDialog_CaptionFont.Font = Me.CaptionFont;
 
             if (FontDialog_CaptionFont.ShowDialog() == DialogResult.OK)
             {
                 Me.CaptionFont = FontDialog_CaptionFont.Font;
-                Button_CaptionFont.Text = string.Concat("CaptionFont: ", Me.CaptionFont.Name, ", ", Me.CaptionFont.Size, "pt", (Me.CaptionFont.Bold ? ", Bold" : string.Empty), (Me.CaptionFont.Italic ? ", Italic" : string.Empty), (Me.CaptionFont.Strikeout ? ", Strikeout" : string.Empty), (Me.CaptionFont.Underline ? ", Underline" : string.Empty));
+                Label_CaptionFont_Value.Text = string.Concat(Me.CaptionFont.Name, ", ", Me.CaptionFont.Size, "pt", (Me.CaptionFont.Style != FontStyle.Regular ? string.Concat(", ", (Me.CaptionFont.Bold ? "B" : string.Empty), (Me.CaptionFont.Italic ? "I" : string.Empty), (Me.CaptionFont.Strikeout ? "S" : string.Empty), (Me.CaptionFont.Underline ? "U" : string.Empty)) : string.Empty));
             }
         }
 
-        private void ComboBox_CaptionAlign_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_CaptionAlignEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (((ComboBox)sender).SelectedIndex)
             {
@@ -309,13 +311,13 @@ namespace WinFormApp
             Me.ShowShadowColor = ((CheckBox)sender).Checked;
         }
 
-        private void ComboBox_FormState_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_FormStateEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
             Me.FormState = (Com.WinForm.FormState)((ComboBox)sender).SelectedIndex;
-            ComboBox_FormState.SelectedIndex = (int)Me.FormState;
+            ComboBox_FormStateEnum.SelectedIndex = (int)Me.FormState;
         }
 
-        private void ComboBox_FormAction_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox_FormActionEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (((ComboBox)sender).SelectedIndex)
             {
