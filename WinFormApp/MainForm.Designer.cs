@@ -60,6 +60,14 @@
             this.Label_FormState = new System.Windows.Forms.Label();
             this.Label_FormStateEnum = new System.Windows.Forms.Label();
             this.Label_FormActionEnum = new System.Windows.Forms.Label();
+            this.Label_BoundsLocation = new System.Windows.Forms.Label();
+            this.TextBox_BoundsX = new System.Windows.Forms.TextBox();
+            this.Label_BoundsLocationSeparator = new System.Windows.Forms.Label();
+            this.TextBox_BoundsY = new System.Windows.Forms.TextBox();
+            this.Label_BoundsSize = new System.Windows.Forms.Label();
+            this.TextBox_BoundsWidth = new System.Windows.Forms.TextBox();
+            this.Label_BoundsSizeSeparator = new System.Windows.Forms.Label();
+            this.TextBox_BoundsHeight = new System.Windows.Forms.TextBox();
             this.Panel_Main.SuspendLayout();
             this.Panel_Client.SuspendLayout();
             this.Panel_FormStyle.SuspendLayout();
@@ -135,6 +143,7 @@
             this.CheckBox_EnableFullScreen.Checked = true;
             this.CheckBox_EnableFullScreen.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_EnableFullScreen.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CheckBox_EnableFullScreen.ForeColor = System.Drawing.Color.White;
             this.CheckBox_EnableFullScreen.Location = new System.Drawing.Point(15, 60);
             this.CheckBox_EnableFullScreen.Name = "CheckBox_EnableFullScreen";
             this.CheckBox_EnableFullScreen.Size = new System.Drawing.Size(128, 21);
@@ -150,6 +159,7 @@
             this.CheckBox_ShowCaptionBarColor.Checked = true;
             this.CheckBox_ShowCaptionBarColor.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_ShowCaptionBarColor.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CheckBox_ShowCaptionBarColor.ForeColor = System.Drawing.Color.White;
             this.CheckBox_ShowCaptionBarColor.Location = new System.Drawing.Point(15, 140);
             this.CheckBox_ShowCaptionBarColor.Name = "CheckBox_ShowCaptionBarColor";
             this.CheckBox_ShowCaptionBarColor.Size = new System.Drawing.Size(155, 21);
@@ -165,6 +175,7 @@
             this.CheckBox_EnableCaptionBarTransparent.Checked = true;
             this.CheckBox_EnableCaptionBarTransparent.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_EnableCaptionBarTransparent.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CheckBox_EnableCaptionBarTransparent.ForeColor = System.Drawing.Color.White;
             this.CheckBox_EnableCaptionBarTransparent.Location = new System.Drawing.Point(15, 165);
             this.CheckBox_EnableCaptionBarTransparent.Name = "CheckBox_EnableCaptionBarTransparent";
             this.CheckBox_EnableCaptionBarTransparent.Size = new System.Drawing.Size(201, 21);
@@ -200,6 +211,7 @@
             // 
             this.CheckBox_TopMost.AutoSize = true;
             this.CheckBox_TopMost.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CheckBox_TopMost.ForeColor = System.Drawing.Color.White;
             this.CheckBox_TopMost.Location = new System.Drawing.Point(15, 110);
             this.CheckBox_TopMost.Name = "CheckBox_TopMost";
             this.CheckBox_TopMost.Size = new System.Drawing.Size(80, 21);
@@ -215,6 +227,7 @@
             this.CheckBox_ShowInTaskbar.Checked = true;
             this.CheckBox_ShowInTaskbar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_ShowInTaskbar.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CheckBox_ShowInTaskbar.ForeColor = System.Drawing.Color.White;
             this.CheckBox_ShowInTaskbar.Location = new System.Drawing.Point(15, 135);
             this.CheckBox_ShowInTaskbar.Name = "CheckBox_ShowInTaskbar";
             this.CheckBox_ShowInTaskbar.Size = new System.Drawing.Size(116, 21);
@@ -252,6 +265,7 @@
             this.CheckBox_ShowIconOnCaptionBar.Checked = true;
             this.CheckBox_ShowIconOnCaptionBar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_ShowIconOnCaptionBar.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CheckBox_ShowIconOnCaptionBar.ForeColor = System.Drawing.Color.White;
             this.CheckBox_ShowIconOnCaptionBar.Location = new System.Drawing.Point(15, 85);
             this.CheckBox_ShowIconOnCaptionBar.Name = "CheckBox_ShowIconOnCaptionBar";
             this.CheckBox_ShowIconOnCaptionBar.Size = new System.Drawing.Size(165, 21);
@@ -267,6 +281,7 @@
             this.CheckBox_ShowShadowColor.Checked = true;
             this.CheckBox_ShowShadowColor.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_ShowShadowColor.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CheckBox_ShowShadowColor.ForeColor = System.Drawing.Color.White;
             this.CheckBox_ShowShadowColor.Location = new System.Drawing.Point(15, 190);
             this.CheckBox_ShowShadowColor.Name = "CheckBox_ShowShadowColor";
             this.CheckBox_ShowShadowColor.Size = new System.Drawing.Size(136, 21);
@@ -284,7 +299,7 @@
             this.Panel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Main.Location = new System.Drawing.Point(0, 0);
             this.Panel_Main.Name = "Panel_Main";
-            this.Panel_Main.Size = new System.Drawing.Size(330, 530);
+            this.Panel_Main.Size = new System.Drawing.Size(330, 595);
             this.Panel_Main.TabIndex = 0;
             // 
             // Panel_Client
@@ -294,7 +309,7 @@
             this.Panel_Client.Controls.Add(this.Panel_FormState);
             this.Panel_Client.Location = new System.Drawing.Point(0, 0);
             this.Panel_Client.Name = "Panel_Client";
-            this.Panel_Client.Size = new System.Drawing.Size(330, 530);
+            this.Panel_Client.Size = new System.Drawing.Size(330, 595);
             this.Panel_Client.TabIndex = 0;
             // 
             // Panel_FormStyle
@@ -316,6 +331,7 @@
             // 
             this.Label_FormStyle.AutoSize = true;
             this.Label_FormStyle.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_FormStyle.ForeColor = System.Drawing.Color.White;
             this.Label_FormStyle.Location = new System.Drawing.Point(0, 0);
             this.Label_FormStyle.Name = "Label_FormStyle";
             this.Label_FormStyle.Size = new System.Drawing.Size(70, 17);
@@ -326,6 +342,7 @@
             // 
             this.Label_FormStyleEnum.AutoSize = true;
             this.Label_FormStyleEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_FormStyleEnum.ForeColor = System.Drawing.Color.White;
             this.Label_FormStyleEnum.Location = new System.Drawing.Point(15, 34);
             this.Label_FormStyleEnum.Name = "Label_FormStyleEnum";
             this.Label_FormStyleEnum.Size = new System.Drawing.Size(68, 17);
@@ -356,6 +373,7 @@
             // 
             this.Label_FormAppearance.AutoSize = true;
             this.Label_FormAppearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_FormAppearance.ForeColor = System.Drawing.Color.White;
             this.Label_FormAppearance.Location = new System.Drawing.Point(0, 0);
             this.Label_FormAppearance.Name = "Label_FormAppearance";
             this.Label_FormAppearance.Size = new System.Drawing.Size(112, 17);
@@ -366,6 +384,7 @@
             // 
             this.Label_ThemeEnum.AutoSize = true;
             this.Label_ThemeEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_ThemeEnum.ForeColor = System.Drawing.Color.White;
             this.Label_ThemeEnum.Location = new System.Drawing.Point(15, 34);
             this.Label_ThemeEnum.Name = "Label_ThemeEnum";
             this.Label_ThemeEnum.Size = new System.Drawing.Size(50, 17);
@@ -376,6 +395,7 @@
             // 
             this.Label_ThemeColor.AutoSize = true;
             this.Label_ThemeColor.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_ThemeColor.ForeColor = System.Drawing.Color.White;
             this.Label_ThemeColor.Location = new System.Drawing.Point(15, 60);
             this.Label_ThemeColor.Name = "Label_ThemeColor";
             this.Label_ThemeColor.Size = new System.Drawing.Size(82, 17);
@@ -396,6 +416,7 @@
             // 
             this.Label_CaptionFont.AutoSize = true;
             this.Label_CaptionFont.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_CaptionFont.ForeColor = System.Drawing.Color.White;
             this.Label_CaptionFont.Location = new System.Drawing.Point(15, 85);
             this.Label_CaptionFont.Name = "Label_CaptionFont";
             this.Label_CaptionFont.Size = new System.Drawing.Size(81, 17);
@@ -416,6 +437,7 @@
             // 
             this.Label_CaptionAlignEnum.AutoSize = true;
             this.Label_CaptionAlignEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_CaptionAlignEnum.ForeColor = System.Drawing.Color.White;
             this.Label_CaptionAlignEnum.Location = new System.Drawing.Point(15, 114);
             this.Label_CaptionAlignEnum.Name = "Label_CaptionAlignEnum";
             this.Label_CaptionAlignEnum.Size = new System.Drawing.Size(85, 17);
@@ -429,9 +451,17 @@
             this.Panel_FormState.Controls.Add(this.ComboBox_FormStateEnum);
             this.Panel_FormState.Controls.Add(this.Label_FormActionEnum);
             this.Panel_FormState.Controls.Add(this.ComboBox_FormActionEnum);
+            this.Panel_FormState.Controls.Add(this.Label_BoundsLocation);
+            this.Panel_FormState.Controls.Add(this.TextBox_BoundsX);
+            this.Panel_FormState.Controls.Add(this.Label_BoundsLocationSeparator);
+            this.Panel_FormState.Controls.Add(this.TextBox_BoundsY);
+            this.Panel_FormState.Controls.Add(this.Label_BoundsSize);
+            this.Panel_FormState.Controls.Add(this.TextBox_BoundsWidth);
+            this.Panel_FormState.Controls.Add(this.Label_BoundsSizeSeparator);
+            this.Panel_FormState.Controls.Add(this.TextBox_BoundsHeight);
             this.Panel_FormState.Location = new System.Drawing.Point(25, 410);
             this.Panel_FormState.Name = "Panel_FormState";
-            this.Panel_FormState.Size = new System.Drawing.Size(280, 95);
+            this.Panel_FormState.Size = new System.Drawing.Size(280, 160);
             this.Panel_FormState.TabIndex = 0;
             this.Panel_FormState.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_FormState_Paint);
             // 
@@ -439,6 +469,7 @@
             // 
             this.Label_FormState.AutoSize = true;
             this.Label_FormState.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_FormState.ForeColor = System.Drawing.Color.White;
             this.Label_FormState.Location = new System.Drawing.Point(0, 0);
             this.Label_FormState.Name = "Label_FormState";
             this.Label_FormState.Size = new System.Drawing.Size(71, 17);
@@ -449,6 +480,7 @@
             // 
             this.Label_FormStateEnum.AutoSize = true;
             this.Label_FormStateEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_FormStateEnum.ForeColor = System.Drawing.Color.White;
             this.Label_FormStateEnum.Location = new System.Drawing.Point(15, 34);
             this.Label_FormStateEnum.Name = "Label_FormStateEnum";
             this.Label_FormStateEnum.Size = new System.Drawing.Size(70, 17);
@@ -459,18 +491,107 @@
             // 
             this.Label_FormActionEnum.AutoSize = true;
             this.Label_FormActionEnum.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_FormActionEnum.ForeColor = System.Drawing.Color.White;
             this.Label_FormActionEnum.Location = new System.Drawing.Point(15, 64);
             this.Label_FormActionEnum.Name = "Label_FormActionEnum";
             this.Label_FormActionEnum.Size = new System.Drawing.Size(77, 17);
             this.Label_FormActionEnum.TabIndex = 0;
             this.Label_FormActionEnum.Text = "FormAction:";
             // 
+            // Label_BoundsLocation
+            // 
+            this.Label_BoundsLocation.AutoSize = true;
+            this.Label_BoundsLocation.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_BoundsLocation.ForeColor = System.Drawing.Color.White;
+            this.Label_BoundsLocation.Location = new System.Drawing.Point(15, 94);
+            this.Label_BoundsLocation.Name = "Label_BoundsLocation";
+            this.Label_BoundsLocation.Size = new System.Drawing.Size(60, 17);
+            this.Label_BoundsLocation.TabIndex = 0;
+            this.Label_BoundsLocation.Text = "Location:";
+            // 
+            // TextBox_BoundsX
+            // 
+            this.TextBox_BoundsX.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_BoundsX.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.TextBox_BoundsX.Location = new System.Drawing.Point(115, 94);
+            this.TextBox_BoundsX.MaxLength = 5;
+            this.TextBox_BoundsX.Name = "TextBox_BoundsX";
+            this.TextBox_BoundsX.Size = new System.Drawing.Size(65, 16);
+            this.TextBox_BoundsX.TabIndex = 0;
+            this.TextBox_BoundsX.TextChanged += new System.EventHandler(this.TextBox_BoundsX_TextChanged);
+            // 
+            // Label_BoundsLocationSeparator
+            // 
+            this.Label_BoundsLocationSeparator.AutoSize = true;
+            this.Label_BoundsLocationSeparator.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_BoundsLocationSeparator.ForeColor = System.Drawing.Color.White;
+            this.Label_BoundsLocationSeparator.Location = new System.Drawing.Point(184, 94);
+            this.Label_BoundsLocationSeparator.Name = "Label_BoundsLocationSeparator";
+            this.Label_BoundsLocationSeparator.Size = new System.Drawing.Size(11, 17);
+            this.Label_BoundsLocationSeparator.TabIndex = 0;
+            this.Label_BoundsLocationSeparator.Text = ",";
+            // 
+            // TextBox_BoundsY
+            // 
+            this.TextBox_BoundsY.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_BoundsY.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.TextBox_BoundsY.Location = new System.Drawing.Point(200, 94);
+            this.TextBox_BoundsY.MaxLength = 5;
+            this.TextBox_BoundsY.Name = "TextBox_BoundsY";
+            this.TextBox_BoundsY.Size = new System.Drawing.Size(65, 16);
+            this.TextBox_BoundsY.TabIndex = 0;
+            this.TextBox_BoundsY.TextChanged += new System.EventHandler(this.TextBox_BoundsY_TextChanged);
+            // 
+            // Label_BoundsSize
+            // 
+            this.Label_BoundsSize.AutoSize = true;
+            this.Label_BoundsSize.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_BoundsSize.ForeColor = System.Drawing.Color.White;
+            this.Label_BoundsSize.Location = new System.Drawing.Point(15, 124);
+            this.Label_BoundsSize.Name = "Label_BoundsSize";
+            this.Label_BoundsSize.Size = new System.Drawing.Size(34, 17);
+            this.Label_BoundsSize.TabIndex = 0;
+            this.Label_BoundsSize.Text = "Size:";
+            // 
+            // TextBox_BoundsWidth
+            // 
+            this.TextBox_BoundsWidth.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_BoundsWidth.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.TextBox_BoundsWidth.Location = new System.Drawing.Point(115, 124);
+            this.TextBox_BoundsWidth.MaxLength = 5;
+            this.TextBox_BoundsWidth.Name = "TextBox_BoundsWidth";
+            this.TextBox_BoundsWidth.Size = new System.Drawing.Size(65, 16);
+            this.TextBox_BoundsWidth.TabIndex = 0;
+            this.TextBox_BoundsWidth.TextChanged += new System.EventHandler(this.TextBox_BoundsWidth_TextChanged);
+            // 
+            // Label_BoundsSizeSeparator
+            // 
+            this.Label_BoundsSizeSeparator.AutoSize = true;
+            this.Label_BoundsSizeSeparator.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_BoundsSizeSeparator.ForeColor = System.Drawing.Color.White;
+            this.Label_BoundsSizeSeparator.Location = new System.Drawing.Point(183, 124);
+            this.Label_BoundsSizeSeparator.Name = "Label_BoundsSizeSeparator";
+            this.Label_BoundsSizeSeparator.Size = new System.Drawing.Size(14, 17);
+            this.Label_BoundsSizeSeparator.TabIndex = 0;
+            this.Label_BoundsSizeSeparator.Text = "x";
+            // 
+            // TextBox_BoundsHeight
+            // 
+            this.TextBox_BoundsHeight.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBox_BoundsHeight.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.TextBox_BoundsHeight.Location = new System.Drawing.Point(200, 124);
+            this.TextBox_BoundsHeight.MaxLength = 5;
+            this.TextBox_BoundsHeight.Name = "TextBox_BoundsHeight";
+            this.TextBox_BoundsHeight.Size = new System.Drawing.Size(65, 16);
+            this.TextBox_BoundsHeight.TabIndex = 0;
+            this.TextBox_BoundsHeight.TextChanged += new System.EventHandler(this.TextBox_BoundsHeight_TextChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(330, 530);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(330, 595);
             this.Controls.Add(this.Panel_Main);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -521,5 +642,13 @@
         private System.Windows.Forms.Label Label_ThemeColor;
         private System.Windows.Forms.Label Label_CaptionFont;
         private System.Windows.Forms.Label Label_CaptionFont_Value;
+        private System.Windows.Forms.TextBox TextBox_BoundsX;
+        private System.Windows.Forms.Label Label_BoundsLocation;
+        private System.Windows.Forms.TextBox TextBox_BoundsHeight;
+        private System.Windows.Forms.Label Label_BoundsSizeSeparator;
+        private System.Windows.Forms.TextBox TextBox_BoundsWidth;
+        private System.Windows.Forms.Label Label_BoundsLocationSeparator;
+        private System.Windows.Forms.TextBox TextBox_BoundsY;
+        private System.Windows.Forms.Label Label_BoundsSize;
     }
 }

@@ -19,6 +19,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Text.RegularExpressions;
+
 namespace WinFormApp
 {
     public partial class MainForm : Form
@@ -88,6 +90,8 @@ namespace WinFormApp
 
             Me.Loaded += LoadedEvents;
             Me.FormStateChanged += FormStateChangedEvents;
+            Me.Move += MoveEvents;
+            Me.Resize += ResizeEvents;
             Me.ThemeChanged += ThemeChangedEvents;
             Me.ThemeColorChanged += ThemeChangedEvents;
         }
@@ -163,6 +167,23 @@ namespace WinFormApp
             ComboBox_FormActionEnum.SelectedIndex = 0;
             ComboBox_FormStateEnum.SelectedIndexChanged += ComboBox_FormStateEnum_SelectedIndexChanged;
             ComboBox_FormActionEnum.SelectedIndexChanged += ComboBox_FormActionEnum_SelectedIndexChanged;
+
+            TextBox_BoundsX.TextChanged -= TextBox_BoundsX_TextChanged;
+            TextBox_BoundsY.TextChanged -= TextBox_BoundsY_TextChanged;
+            TextBox_BoundsWidth.TextChanged -= TextBox_BoundsWidth_TextChanged;
+            TextBox_BoundsHeight.TextChanged -= TextBox_BoundsHeight_TextChanged;
+            TextBox_BoundsX.Text = Me.X.ToString();
+            TextBox_BoundsY.Text = Me.Y.ToString();
+            TextBox_BoundsWidth.Text = Me.Width.ToString();
+            TextBox_BoundsHeight.Text = Me.Height.ToString();
+            TextBox_BoundsX.SelectionStart = TextBox_BoundsX.TextLength;
+            TextBox_BoundsY.SelectionStart = TextBox_BoundsY.TextLength;
+            TextBox_BoundsWidth.SelectionStart = TextBox_BoundsWidth.TextLength;
+            TextBox_BoundsHeight.SelectionStart = TextBox_BoundsHeight.TextLength;
+            TextBox_BoundsX.TextChanged += TextBox_BoundsX_TextChanged;
+            TextBox_BoundsY.TextChanged += TextBox_BoundsY_TextChanged;
+            TextBox_BoundsWidth.TextChanged += TextBox_BoundsWidth_TextChanged;
+            TextBox_BoundsHeight.TextChanged += TextBox_BoundsHeight_TextChanged;
         }
 
         private void FormStateChangedEvents(object sender, EventArgs e)
@@ -170,6 +191,30 @@ namespace WinFormApp
             ComboBox_FormStateEnum.SelectedIndexChanged -= ComboBox_FormStateEnum_SelectedIndexChanged;
             ComboBox_FormStateEnum.SelectedIndex = (int)Me.FormState;
             ComboBox_FormStateEnum.SelectedIndexChanged += ComboBox_FormStateEnum_SelectedIndexChanged;
+        }
+
+        private void MoveEvents(object sender, EventArgs e)
+        {
+            TextBox_BoundsX.TextChanged -= TextBox_BoundsX_TextChanged;
+            TextBox_BoundsY.TextChanged -= TextBox_BoundsY_TextChanged;
+            TextBox_BoundsX.Text = Me.X.ToString();
+            TextBox_BoundsY.Text = Me.Y.ToString();
+            TextBox_BoundsX.SelectionStart = TextBox_BoundsX.TextLength;
+            TextBox_BoundsY.SelectionStart = TextBox_BoundsY.TextLength;
+            TextBox_BoundsX.TextChanged += TextBox_BoundsX_TextChanged;
+            TextBox_BoundsY.TextChanged += TextBox_BoundsY_TextChanged;
+        }
+
+        private void ResizeEvents(object sender, EventArgs e)
+        {
+            TextBox_BoundsWidth.TextChanged -= TextBox_BoundsWidth_TextChanged;
+            TextBox_BoundsHeight.TextChanged -= TextBox_BoundsHeight_TextChanged;
+            TextBox_BoundsWidth.Text = Me.Width.ToString();
+            TextBox_BoundsHeight.Text = Me.Height.ToString();
+            TextBox_BoundsWidth.SelectionStart = TextBox_BoundsWidth.TextLength;
+            TextBox_BoundsHeight.SelectionStart = TextBox_BoundsHeight.TextLength;
+            TextBox_BoundsWidth.TextChanged += TextBox_BoundsWidth_TextChanged;
+            TextBox_BoundsHeight.TextChanged += TextBox_BoundsHeight_TextChanged;
         }
 
         private void ThemeChangedEvents(object sender, EventArgs e)
@@ -218,6 +263,14 @@ namespace WinFormApp
             ComboBox_FormActionEnum.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
             ComboBox_FormActionEnum.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
 
+            Label_BoundsLocation.ForeColor = Label_BoundsLocationSeparator.ForeColor = Me.RecommendColors.Text.ToColor();
+            TextBox_BoundsX.ForeColor = TextBox_BoundsY.ForeColor = Me.RecommendColors.Text.ToColor();
+            TextBox_BoundsX.BackColor = TextBox_BoundsY.BackColor = Me.RecommendColors.FormBackground.ToColor();
+
+            Label_BoundsSize.ForeColor = Label_BoundsSizeSeparator.ForeColor = Me.RecommendColors.Text.ToColor();
+            TextBox_BoundsWidth.ForeColor = TextBox_BoundsHeight.ForeColor = Me.RecommendColors.Text.ToColor();
+            TextBox_BoundsWidth.BackColor = TextBox_BoundsHeight.BackColor = Me.RecommendColors.FormBackground.ToColor();
+
             //
 
             Com.WinForm.ControlSubstitution.LabelAsButton(Label_ThemeColor_Value, Label_ThemeColor_Value_Click, Color.Transparent, Me.RecommendColors.Button_DEC.ToColor(), Me.RecommendColors.Button_INC.ToColor(), new Font("微软雅黑", 9F, FontStyle.Underline, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134));
@@ -230,32 +283,62 @@ namespace WinFormApp
 
         private void ComboBox_FormStyleEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Me.FormStyle = (Com.WinForm.FormStyle)((ComboBox)sender).SelectedIndex;
+            ComboBox Ctrl = sender as ComboBox;
+
+            if (Ctrl != null)
+            {
+                Me.FormStyle = (Com.WinForm.FormStyle)(Ctrl.SelectedIndex);
+            }
         }
 
         private void CheckBox_EnableFullScreen_CheckedChanged(object sender, EventArgs e)
         {
-            Me.EnableFullScreen = ((CheckBox)sender).Checked;
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                Me.EnableFullScreen = Ctrl.Checked;
+            }
         }
 
         private void CheckBox_ShowIconOnCaptionBar_CheckedChanged(object sender, EventArgs e)
         {
-            Me.ShowIconOnCaptionBar = ((CheckBox)sender).Checked;
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                Me.ShowIconOnCaptionBar = Ctrl.Checked;
+            }
         }
 
         private void CheckBox_TopMost_CheckedChanged(object sender, EventArgs e)
         {
-            Me.TopMost = ((CheckBox)sender).Checked;
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                Me.TopMost = Ctrl.Checked;
+            }
         }
 
         private void CheckBox_ShowInTaskbar_CheckedChanged(object sender, EventArgs e)
         {
-            Me.ShowInTaskbar = ((CheckBox)sender).Checked;
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                Me.ShowInTaskbar = Ctrl.Checked;
+            }
         }
 
         private void ComboBox_ThemeEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Me.Theme = (Com.WinForm.Theme)((ComboBox)sender).SelectedIndex;
+            ComboBox Ctrl = sender as ComboBox;
+
+            if (Ctrl != null)
+            {
+                Me.Theme = (Com.WinForm.Theme)(Ctrl.SelectedIndex);
+            }
         }
 
         private void Label_ThemeColor_Value_Click(object sender, EventArgs e)
@@ -282,61 +365,216 @@ namespace WinFormApp
 
         private void ComboBox_CaptionAlignEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (((ComboBox)sender).SelectedIndex)
+            ComboBox Ctrl = sender as ComboBox;
+
+            if (Ctrl != null)
             {
-                case 0: Me.CaptionAlign = ContentAlignment.TopLeft; break;
-                case 1: Me.CaptionAlign = ContentAlignment.TopCenter; break;
-                case 2: Me.CaptionAlign = ContentAlignment.TopRight; break;
-                case 3: Me.CaptionAlign = ContentAlignment.MiddleLeft; break;
-                case 4: Me.CaptionAlign = ContentAlignment.MiddleCenter; break;
-                case 5: Me.CaptionAlign = ContentAlignment.MiddleRight; break;
-                case 6: Me.CaptionAlign = ContentAlignment.BottomLeft; break;
-                case 7: Me.CaptionAlign = ContentAlignment.BottomCenter; break;
-                case 8: Me.CaptionAlign = ContentAlignment.BottomRight; break;
+                switch (Ctrl.SelectedIndex)
+                {
+                    case 0: Me.CaptionAlign = ContentAlignment.TopLeft; break;
+                    case 1: Me.CaptionAlign = ContentAlignment.TopCenter; break;
+                    case 2: Me.CaptionAlign = ContentAlignment.TopRight; break;
+                    case 3: Me.CaptionAlign = ContentAlignment.MiddleLeft; break;
+                    case 4: Me.CaptionAlign = ContentAlignment.MiddleCenter; break;
+                    case 5: Me.CaptionAlign = ContentAlignment.MiddleRight; break;
+                    case 6: Me.CaptionAlign = ContentAlignment.BottomLeft; break;
+                    case 7: Me.CaptionAlign = ContentAlignment.BottomCenter; break;
+                    case 8: Me.CaptionAlign = ContentAlignment.BottomRight; break;
+                }
             }
         }
 
         private void CheckBox_ShowCaptionBarColor_CheckedChanged(object sender, EventArgs e)
         {
-            Me.ShowCaptionBarColor = ((CheckBox)sender).Checked;
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                Me.ShowCaptionBarColor = Ctrl.Checked;
+            }
         }
 
         private void CheckBox_EnableCaptionBarTransparent_CheckedChanged(object sender, EventArgs e)
         {
-            Me.EnableCaptionBarTransparent = ((CheckBox)sender).Checked;
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                Me.EnableCaptionBarTransparent = Ctrl.Checked;
+            }
         }
 
         private void CheckBox_ShowShadowColor_CheckedChanged(object sender, EventArgs e)
         {
-            Me.ShowShadowColor = ((CheckBox)sender).Checked;
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                Me.ShowShadowColor = Ctrl.Checked;
+            }
         }
 
         private void ComboBox_FormStateEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Me.FormState = (Com.WinForm.FormState)((ComboBox)sender).SelectedIndex;
-            ComboBox_FormStateEnum.SelectedIndex = (int)Me.FormState;
+            ComboBox Ctrl = sender as ComboBox;
+
+            if (Ctrl != null)
+            {
+                Me.FormState = (Com.WinForm.FormState)(Ctrl.SelectedIndex);
+
+                ComboBox_FormStateEnum.SelectedIndexChanged -= ComboBox_FormStateEnum_SelectedIndexChanged;
+                ComboBox_FormStateEnum.SelectedIndex = (int)Me.FormState;
+                ComboBox_FormStateEnum.SelectedIndexChanged += ComboBox_FormStateEnum_SelectedIndexChanged;
+            }
         }
 
         private void ComboBox_FormActionEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (((ComboBox)sender).SelectedIndex)
-            {
-                case 1: Me.Return(); break;
-                case 2: Me.Minimize(); break;
-                case 3: Me.Maximize(); break;
-                case 4: Me.EnterFullScreen(); break;
-                case 5: Me.ExitFullScreen(); break;
-                case 6: Me.LeftHalfScreen(); break;
-                case 7: Me.RightHalfScreen(); break;
-                case 8: Me.HighAsScreen(); break;
-                case 9: Me.TopLeftQuarterScreen(); break;
-                case 10: Me.TopRightQuarterScreen(); break;
-                case 11: Me.BottomLeftQuarterScreen(); break;
-                case 12: Me.BottomRightQuarterScreen(); break;
-                case 13: Me.Close(); break;
-            }
+            ComboBox Ctrl = sender as ComboBox;
 
-            ((ComboBox)sender).SelectedIndex = 0;
+            if (Ctrl != null)
+            {
+                switch (Ctrl.SelectedIndex)
+                {
+                    case 1: Me.Return(); break;
+                    case 2: Me.Minimize(); break;
+                    case 3: Me.Maximize(); break;
+                    case 4: Me.EnterFullScreen(); break;
+                    case 5: Me.ExitFullScreen(); break;
+                    case 6: Me.LeftHalfScreen(); break;
+                    case 7: Me.RightHalfScreen(); break;
+                    case 8: Me.HighAsScreen(); break;
+                    case 9: Me.TopLeftQuarterScreen(); break;
+                    case 10: Me.TopRightQuarterScreen(); break;
+                    case 11: Me.BottomLeftQuarterScreen(); break;
+                    case 12: Me.BottomRightQuarterScreen(); break;
+                    case 13: Me.Close(); break;
+                }
+
+                Ctrl.SelectedIndex = 0;
+            }
+        }
+
+        private void TextBox_BoundsX_TextChanged(object sender, EventArgs e)
+        {
+            TextBox Ctrl = sender as TextBox;
+
+            if (Ctrl != null)
+            {
+                Regex RegexUint = new Regex(@"[^0-9]");
+                Regex RegexInt = new Regex(@"[^0-9\-]");
+
+                Ctrl.Text = RegexInt.Replace(Ctrl.Text, string.Empty);
+
+                Ctrl.SelectionStart = Ctrl.TextLength;
+
+                if (RegexUint.Replace(Ctrl.Text, string.Empty) != string.Empty)
+                {
+                    Ctrl.Text = (Regex.Matches(Ctrl.Text, @"-").Count % 2 == 0 ? string.Empty : "-") + Convert.ToString(Convert.ToInt32(RegexUint.Replace(Ctrl.Text, string.Empty)));
+
+                    if (Convert.ToInt32(Ctrl.Text) < Screen.PrimaryScreen.Bounds.X - Me.Width + 1)
+                    {
+                        Ctrl.Text = Convert.ToString(Screen.PrimaryScreen.Bounds.X - Me.Width + 1);
+                    }
+                    else if (Convert.ToInt32(Ctrl.Text) > Screen.PrimaryScreen.Bounds.Right - 1)
+                    {
+                        Ctrl.Text = Convert.ToString(Screen.PrimaryScreen.Bounds.Right - 1);
+                    }
+
+                    Me.X = Convert.ToInt32(Ctrl.Text);
+                }
+                else
+                {
+                    Ctrl.Text = (Regex.Matches(Ctrl.Text, @"-").Count % 2 == 0 ? string.Empty : "-");
+                }
+            }
+        }
+
+        private void TextBox_BoundsY_TextChanged(object sender, EventArgs e)
+        {
+            TextBox Ctrl = sender as TextBox;
+
+            if (Ctrl != null)
+            {
+                Regex RegexUint = new Regex(@"[^0-9]");
+                Regex RegexInt = new Regex(@"[^0-9\-]");
+
+                Ctrl.Text = RegexInt.Replace(Ctrl.Text, string.Empty);
+
+                Ctrl.SelectionStart = Ctrl.TextLength;
+
+                if (RegexUint.Replace(Ctrl.Text, string.Empty) != string.Empty)
+                {
+                    Ctrl.Text = (Regex.Matches(Ctrl.Text, @"-").Count % 2 == 0 ? string.Empty : "-") + Convert.ToString(Convert.ToInt32(RegexUint.Replace(Ctrl.Text, string.Empty)));
+
+                    if (Convert.ToInt32(Ctrl.Text) < Screen.PrimaryScreen.Bounds.Y - Me.Height + 1)
+                    {
+                        Ctrl.Text = Convert.ToString(Screen.PrimaryScreen.Bounds.Y - Me.Height + 1);
+                    }
+                    else if (Convert.ToInt32(Ctrl.Text) > Screen.PrimaryScreen.Bounds.Bottom - 1)
+                    {
+                        Ctrl.Text = Convert.ToString(Screen.PrimaryScreen.Bounds.Bottom - 1);
+                    }
+
+                    Me.Y = Convert.ToInt32(Ctrl.Text);
+                }
+                else
+                {
+                    Ctrl.Text = (Regex.Matches(Ctrl.Text, @"-").Count % 2 == 0 ? string.Empty : "-");
+                }
+            }
+        }
+
+        private void TextBox_BoundsWidth_TextChanged(object sender, EventArgs e)
+        {
+            TextBox Ctrl = sender as TextBox;
+
+            if (Ctrl != null)
+            {
+                Regex RegexUint = new Regex(@"[^0-9]");
+
+                Ctrl.Text = RegexUint.Replace(Ctrl.Text, string.Empty);
+
+                Ctrl.SelectionStart = Ctrl.TextLength;
+
+                if (RegexUint.Replace(Ctrl.Text, string.Empty) != string.Empty)
+                {
+                    Ctrl.Text = Convert.ToString(Convert.ToInt32(RegexUint.Replace(Ctrl.Text, string.Empty)));
+
+                    if (Convert.ToInt32(Ctrl.Text) > Screen.PrimaryScreen.Bounds.Width)
+                    {
+                        Ctrl.Text = Convert.ToString(Screen.PrimaryScreen.Bounds.Width);
+                    }
+
+                    Me.Width = Convert.ToInt32(Ctrl.Text);
+                }
+            }
+        }
+
+        private void TextBox_BoundsHeight_TextChanged(object sender, EventArgs e)
+        {
+            TextBox Ctrl = sender as TextBox;
+
+            if (Ctrl != null)
+            {
+                Regex RegexUint = new Regex(@"[^0-9]");
+
+                Ctrl.Text = RegexUint.Replace(Ctrl.Text, string.Empty);
+
+                Ctrl.SelectionStart = Ctrl.TextLength;
+
+                if (RegexUint.Replace(Ctrl.Text, string.Empty) != string.Empty)
+                {
+                    Ctrl.Text = Convert.ToString(Convert.ToInt32(RegexUint.Replace(Ctrl.Text, string.Empty)));
+
+                    if (Convert.ToInt32(Ctrl.Text) > Screen.PrimaryScreen.Bounds.Height)
+                    {
+                        Ctrl.Text = Convert.ToString(Screen.PrimaryScreen.Bounds.Height);
+                    }
+
+                    Me.Height = Convert.ToInt32(Ctrl.Text);
+                }
+            }
         }
 
         #endregion
@@ -370,6 +608,18 @@ namespace WinFormApp
                 Control Cntr = sender as Control;
                 Control Ctrl = Label_FormState;
                 e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
+            }
+
+            using (Pen Border = new Pen(Me.RecommendColors.Border_DEC.ToColor(), 1))
+            {
+                using (Pen Border_Shadow = new Pen(Me.RecommendColors.Border_DEC.AtAlpha(96).ToColor(), 1))
+                {
+                    e.Graphics.DrawRectangle(Border_Shadow, Com.Geometry.GetMinimumBoundingRectangleOfControls(new Control[] { TextBox_BoundsX, TextBox_BoundsY }, 3));
+                    e.Graphics.DrawRectangle(Border, Com.Geometry.GetMinimumBoundingRectangleOfControls(new Control[] { TextBox_BoundsX, TextBox_BoundsY }, 2));
+
+                    e.Graphics.DrawRectangle(Border_Shadow, Com.Geometry.GetMinimumBoundingRectangleOfControls(new Control[] { TextBox_BoundsWidth, TextBox_BoundsHeight }, 3));
+                    e.Graphics.DrawRectangle(Border, Com.Geometry.GetMinimumBoundingRectangleOfControls(new Control[] { TextBox_BoundsWidth, TextBox_BoundsHeight }, 2));
+                }
             }
         }
 
