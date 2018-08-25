@@ -518,6 +518,7 @@
             this.TextBox_BoundsX.Name = "TextBox_BoundsX";
             this.TextBox_BoundsX.Size = new System.Drawing.Size(65, 16);
             this.TextBox_BoundsX.TabIndex = 0;
+            this.TextBox_BoundsX.TabStop = false;
             this.TextBox_BoundsX.TextChanged += new System.EventHandler(this.TextBox_BoundsX_TextChanged);
             // 
             // Label_BoundsLocationSeparator
@@ -540,6 +541,7 @@
             this.TextBox_BoundsY.Name = "TextBox_BoundsY";
             this.TextBox_BoundsY.Size = new System.Drawing.Size(65, 16);
             this.TextBox_BoundsY.TabIndex = 0;
+            this.TextBox_BoundsY.TabStop = false;
             this.TextBox_BoundsY.TextChanged += new System.EventHandler(this.TextBox_BoundsY_TextChanged);
             // 
             // Label_BoundsSize
@@ -562,6 +564,7 @@
             this.TextBox_BoundsWidth.Name = "TextBox_BoundsWidth";
             this.TextBox_BoundsWidth.Size = new System.Drawing.Size(65, 16);
             this.TextBox_BoundsWidth.TabIndex = 0;
+            this.TextBox_BoundsWidth.TabStop = false;
             this.TextBox_BoundsWidth.TextChanged += new System.EventHandler(this.TextBox_BoundsWidth_TextChanged);
             // 
             // Label_BoundsSizeSeparator
@@ -584,6 +587,7 @@
             this.TextBox_BoundsHeight.Name = "TextBox_BoundsHeight";
             this.TextBox_BoundsHeight.Size = new System.Drawing.Size(65, 16);
             this.TextBox_BoundsHeight.TabIndex = 0;
+            this.TextBox_BoundsHeight.TabStop = false;
             this.TextBox_BoundsHeight.TextChanged += new System.EventHandler(this.TextBox_BoundsHeight_TextChanged);
             // 
             // MainForm
