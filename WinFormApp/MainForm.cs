@@ -131,6 +131,10 @@ namespace WinFormApp
 
             Label_ThemeColor_Value.Text = Com.ColorManipulation.GetColorName(Me.ThemeColor);
 
+            CheckBox_ShowCaption.CheckedChanged -= CheckBox_ShowCaption_CheckedChanged;
+            CheckBox_ShowCaption.Checked = Me.ShowCaption;
+            CheckBox_ShowCaption.CheckedChanged += CheckBox_ShowCaption_CheckedChanged;
+
             Label_CaptionFont_Value.Text = string.Concat(Me.CaptionFont.Name, ", ", Me.CaptionFont.Size, "pt", (Me.CaptionFont.Style != FontStyle.Regular ? string.Concat(", ", (Me.CaptionFont.Bold ? "B" : string.Empty), (Me.CaptionFont.Italic ? "I" : string.Empty), (Me.CaptionFont.Strikeout ? "S" : string.Empty), (Me.CaptionFont.Underline ? "U" : string.Empty)) : string.Empty));
 
             ComboBox_CaptionAlignEnum.SelectedIndexChanged -= ComboBox_CaptionAlignEnum_SelectedIndexChanged;
@@ -239,6 +243,8 @@ namespace WinFormApp
             ComboBox_ThemeEnum.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
 
             Label_ThemeColor.ForeColor = Label_ThemeColor_Value.ForeColor = Me.RecommendColors.Text.ToColor();
+
+            CheckBox_ShowCaption.ForeColor = Me.RecommendColors.Text.ToColor();
 
             Label_CaptionFont.ForeColor = Label_CaptionFont_Value.ForeColor = Me.RecommendColors.Text.ToColor();
 
@@ -349,6 +355,16 @@ namespace WinFormApp
             {
                 Me.ThemeColor = new Com.ColorX(ColorDialog_ThemeColor.Color);
                 Label_ThemeColor_Value.Text = Com.ColorManipulation.GetColorName(Me.ThemeColor);
+            }
+        }
+
+        private void CheckBox_ShowCaption_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                Me.ShowCaption = Ctrl.Checked;
             }
         }
 
@@ -472,16 +488,12 @@ namespace WinFormApp
                 {
                     Ctrl.Text = (Regex.Matches(Ctrl.Text, @"-").Count % 2 == 0 ? string.Empty : "-") + Convert.ToString(Convert.ToInt32(RegexUint.Replace(Ctrl.Text, string.Empty)));
 
-                    if (Convert.ToInt32(Ctrl.Text) < Screen.PrimaryScreen.Bounds.X - Me.Width + 1)
-                    {
-                        Ctrl.Text = Convert.ToString(Screen.PrimaryScreen.Bounds.X - Me.Width + 1);
-                    }
-                    else if (Convert.ToInt32(Ctrl.Text) > Screen.PrimaryScreen.Bounds.Right - 1)
-                    {
-                        Ctrl.Text = Convert.ToString(Screen.PrimaryScreen.Bounds.Right - 1);
-                    }
+                    int X = Convert.ToInt32(Ctrl.Text);
 
-                    Me.X = Convert.ToInt32(Ctrl.Text);
+                    if (X >= Screen.PrimaryScreen.Bounds.X - Me.Width + 1 && X <= Screen.PrimaryScreen.Bounds.Right - 1)
+                    {
+                        Me.X = X;
+                    }
                 }
                 else
                 {
@@ -507,16 +519,12 @@ namespace WinFormApp
                 {
                     Ctrl.Text = (Regex.Matches(Ctrl.Text, @"-").Count % 2 == 0 ? string.Empty : "-") + Convert.ToString(Convert.ToInt32(RegexUint.Replace(Ctrl.Text, string.Empty)));
 
-                    if (Convert.ToInt32(Ctrl.Text) < Screen.PrimaryScreen.Bounds.Y - Me.Height + 1)
-                    {
-                        Ctrl.Text = Convert.ToString(Screen.PrimaryScreen.Bounds.Y - Me.Height + 1);
-                    }
-                    else if (Convert.ToInt32(Ctrl.Text) > Screen.PrimaryScreen.Bounds.Bottom - 1)
-                    {
-                        Ctrl.Text = Convert.ToString(Screen.PrimaryScreen.Bounds.Bottom - 1);
-                    }
+                    int Y = Convert.ToInt32(Ctrl.Text);
 
-                    Me.Y = Convert.ToInt32(Ctrl.Text);
+                    if (Y >= Screen.PrimaryScreen.Bounds.Y - Me.Height + 1 && Y <= Screen.PrimaryScreen.Bounds.Bottom - 1)
+                    {
+                        Me.Y = Y;
+                    }
                 }
                 else
                 {
@@ -541,12 +549,12 @@ namespace WinFormApp
                 {
                     Ctrl.Text = Convert.ToString(Convert.ToInt32(RegexUint.Replace(Ctrl.Text, string.Empty)));
 
-                    if (Convert.ToInt32(Ctrl.Text) > Screen.PrimaryScreen.Bounds.Width)
-                    {
-                        Ctrl.Text = Convert.ToString(Screen.PrimaryScreen.Bounds.Width);
-                    }
+                    int W = Convert.ToInt32(Ctrl.Text);
 
-                    Me.Width = Convert.ToInt32(Ctrl.Text);
+                    if (W >= Me.MinimumSize.Width && W <= Me.MaximumSize.Width)
+                    {
+                        Me.Width = W;
+                    }
                 }
             }
         }
@@ -567,12 +575,12 @@ namespace WinFormApp
                 {
                     Ctrl.Text = Convert.ToString(Convert.ToInt32(RegexUint.Replace(Ctrl.Text, string.Empty)));
 
-                    if (Convert.ToInt32(Ctrl.Text) > Screen.PrimaryScreen.Bounds.Height)
-                    {
-                        Ctrl.Text = Convert.ToString(Screen.PrimaryScreen.Bounds.Height);
-                    }
+                    int H = Convert.ToInt32(Ctrl.Text);
 
-                    Me.Height = Convert.ToInt32(Ctrl.Text);
+                    if (H >= Me.MinimumSize.Height && H <= Me.MaximumSize.Height)
+                    {
+                        Me.Height = H;
+                    }
                 }
             }
         }
@@ -624,6 +632,5 @@ namespace WinFormApp
         }
 
         #endregion
-
     }
 }
