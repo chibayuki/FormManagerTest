@@ -179,7 +179,7 @@
             this.CheckBox_EnableCaptionBarTransparent.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_EnableCaptionBarTransparent.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.CheckBox_EnableCaptionBarTransparent.ForeColor = System.Drawing.Color.White;
-            this.CheckBox_EnableCaptionBarTransparent.Location = new System.Drawing.Point(15, 215);
+            this.CheckBox_EnableCaptionBarTransparent.Location = new System.Drawing.Point(15, 220);
             this.CheckBox_EnableCaptionBarTransparent.Name = "CheckBox_EnableCaptionBarTransparent";
             this.CheckBox_EnableCaptionBarTransparent.Size = new System.Drawing.Size(201, 21);
             this.CheckBox_EnableCaptionBarTransparent.TabIndex = 0;
