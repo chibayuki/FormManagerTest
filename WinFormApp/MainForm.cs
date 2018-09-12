@@ -131,11 +131,15 @@ namespace WinFormApp
 
             Label_ThemeColor_Value.Text = Com.ColorManipulation.GetColorName(Me.ThemeColor);
 
+            TextBox_Caption.TextChanged -= TextBox_Caption_TextChanged;
+            TextBox_Caption.Text = Me.Caption;
+            TextBox_Caption.TextChanged += TextBox_Caption_TextChanged;
+
             CheckBox_ShowCaption.CheckedChanged -= CheckBox_ShowCaption_CheckedChanged;
             CheckBox_ShowCaption.Checked = Me.ShowCaption;
             CheckBox_ShowCaption.CheckedChanged += CheckBox_ShowCaption_CheckedChanged;
 
-            Label_CaptionFont_Value.Text = string.Concat(Me.CaptionFont.Name, ", ", Me.CaptionFont.Size, "pt", (Me.CaptionFont.Style != FontStyle.Regular ? string.Concat(", ", (Me.CaptionFont.Bold ? "B" : string.Empty), (Me.CaptionFont.Italic ? "I" : string.Empty), (Me.CaptionFont.Strikeout ? "S" : string.Empty), (Me.CaptionFont.Underline ? "U" : string.Empty)) : string.Empty));
+            Label_CaptionFont_Value.Text = string.Concat(Me.CaptionFont.Name, ", ", Me.CaptionFont.Size, "pt, ", (Me.CaptionFont.Style == FontStyle.Regular ? "R" : string.Concat((Me.CaptionFont.Bold ? "B" : string.Empty), (Me.CaptionFont.Italic ? "I" : string.Empty), (Me.CaptionFont.Strikeout ? "S" : string.Empty), (Me.CaptionFont.Underline ? "U" : string.Empty))));
 
             ComboBox_CaptionAlignEnum.SelectedIndexChanged -= ComboBox_CaptionAlignEnum_SelectedIndexChanged;
             switch (Me.CaptionAlign)
@@ -243,6 +247,8 @@ namespace WinFormApp
             ComboBox_ThemeEnum.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
 
             Label_ThemeColor.ForeColor = Label_ThemeColor_Value.ForeColor = Me.RecommendColors.Text.ToColor();
+
+            Label_Caption.ForeColor = TextBox_Caption.ForeColor = Me.RecommendColors.Text.ToColor();
 
             CheckBox_ShowCaption.ForeColor = Me.RecommendColors.Text.ToColor();
 
@@ -358,6 +364,16 @@ namespace WinFormApp
             }
         }
 
+        private void TextBox_Caption_TextChanged(object sender, EventArgs e)
+        {
+            TextBox Ctrl = sender as TextBox;
+
+            if (Ctrl != null)
+            {
+                Me.Caption = Ctrl.Text;
+            }
+        }
+
         private void CheckBox_ShowCaption_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox Ctrl = sender as CheckBox;
@@ -375,7 +391,7 @@ namespace WinFormApp
             if (FontDialog_CaptionFont.ShowDialog() == DialogResult.OK)
             {
                 Me.CaptionFont = FontDialog_CaptionFont.Font;
-                Label_CaptionFont_Value.Text = string.Concat(Me.CaptionFont.Name, ", ", Me.CaptionFont.Size, "pt", (Me.CaptionFont.Style != FontStyle.Regular ? string.Concat(", ", (Me.CaptionFont.Bold ? "B" : string.Empty), (Me.CaptionFont.Italic ? "I" : string.Empty), (Me.CaptionFont.Strikeout ? "S" : string.Empty), (Me.CaptionFont.Underline ? "U" : string.Empty)) : string.Empty));
+                Label_CaptionFont_Value.Text = string.Concat(Me.CaptionFont.Name, ", ", Me.CaptionFont.Size, "pt, ", (Me.CaptionFont.Style == FontStyle.Regular ? "R" : string.Concat((Me.CaptionFont.Bold ? "B" : string.Empty), (Me.CaptionFont.Italic ? "I" : string.Empty), (Me.CaptionFont.Strikeout ? "S" : string.Empty), (Me.CaptionFont.Underline ? "U" : string.Empty))));
             }
         }
 
@@ -606,6 +622,15 @@ namespace WinFormApp
                 Control Cntr = sender as Control;
                 Control Ctrl = Label_FormAppearance;
                 e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
+            }
+
+            using (Pen Border = new Pen(Me.RecommendColors.Border_DEC.ToColor(), 1))
+            {
+                using (Pen Border_Shadow = new Pen(Me.RecommendColors.Border_DEC.AtAlpha(96).ToColor(), 1))
+                {
+                    e.Graphics.DrawRectangle(Border_Shadow, Com.Geometry.GetMinimumBoundingRectangleOfControls(new Control[] { TextBox_Caption }, 3));
+                    e.Graphics.DrawRectangle(Border, Com.Geometry.GetMinimumBoundingRectangleOfControls(new Control[] { TextBox_Caption }, 2));
+                }
             }
         }
 
