@@ -719,6 +719,8 @@ namespace WinFormApp
                 }
                 else
                 {
+                    Me.CaptionBarBackgroundImage = null;
+
                     if (ImmersiveExperienceBackgroundImage != null)
                     {
                         ImmersiveExperienceBackgroundImage.Dispose();
@@ -750,8 +752,6 @@ namespace WinFormApp
                     Me.EnableCaptionBarTransparent = EnableCaptionBarTransparent_BeforeImmersiveExperience;
                     Me.ShowShadowColor = ShowShadowColor_BeforeImmersiveExperience;
                     Me.Size = Size_BeforeImmersiveExperience;
-
-                    Me.CaptionBarBackgroundImage = null;
 
                     Panel_Main.Refresh();
                 }
