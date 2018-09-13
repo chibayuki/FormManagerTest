@@ -246,9 +246,17 @@ namespace WinFormApp
             ComboBox_ThemeEnum.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
             ComboBox_ThemeEnum.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
 
+            ComboBox_ThemeEnum.SelectedIndexChanged -= ComboBox_ThemeEnum_SelectedIndexChanged;
+            ComboBox_ThemeEnum.SelectedIndex = (int)Me.Theme;
+            ComboBox_ThemeEnum.SelectedIndexChanged += ComboBox_ThemeEnum_SelectedIndexChanged;
+
             Label_ThemeColor.ForeColor = Label_ThemeColor_Value.ForeColor = Me.RecommendColors.Text.ToColor();
 
-            Label_Caption.ForeColor = TextBox_Caption.ForeColor = Me.RecommendColors.Text.ToColor();
+            Label_ThemeColor_Value.Text = Com.ColorManipulation.GetColorName(Me.ThemeColor);
+
+            Label_Caption.ForeColor = Me.RecommendColors.Text.ToColor();
+            TextBox_Caption.ForeColor = Me.RecommendColors.Text.ToColor();
+            TextBox_Caption.BackColor = Me.RecommendColors.FormBackground.ToColor();
 
             CheckBox_ShowCaption.ForeColor = Me.RecommendColors.Text.ToColor();
 
@@ -282,6 +290,12 @@ namespace WinFormApp
             Label_BoundsSize.ForeColor = Label_BoundsSizeSeparator.ForeColor = Me.RecommendColors.Text.ToColor();
             TextBox_BoundsWidth.ForeColor = TextBox_BoundsHeight.ForeColor = Me.RecommendColors.Text.ToColor();
             TextBox_BoundsWidth.BackColor = TextBox_BoundsHeight.BackColor = Me.RecommendColors.FormBackground.ToColor();
+
+            //
+
+            Label_Other.ForeColor = Me.RecommendColors.Text_INC.ToColor();
+
+            CheckBox_ImmersiveExperience.ForeColor = Me.RecommendColors.Text.ToColor();
 
             //
 
@@ -601,9 +615,95 @@ namespace WinFormApp
             }
         }
 
+        private void CheckBox_ImmersiveExperience_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                if (Ctrl.Checked)
+                {
+                    if (OpenFileDialog_ImmersiveExperience.ShowDialog() == DialogResult.OK)
+                    {
+                        ImmersiveExperienceBackgroundImage = new Bitmap(Image.FromFile(OpenFileDialog_ImmersiveExperience.FileName));
+
+                        ComboBox_FormStyleEnum.Enabled = false;
+                        CheckBox_EnableFullScreen.Enabled = false;
+                        CheckBox_ShowIconOnCaptionBar.Enabled = false;
+                        ComboBox_ThemeEnum.Enabled = false;
+                        Label_ThemeColor_Value.Enabled = false;
+                        CheckBox_ShowCaption.Enabled = false;
+                        Label_CaptionFont_Value.Enabled = false;
+                        ComboBox_CaptionAlignEnum.Enabled = false;
+                        CheckBox_ShowCaptionBarColor.Enabled = false;
+                        CheckBox_EnableCaptionBarTransparent.Enabled = false;
+                        CheckBox_ShowCaptionBarColor.Enabled = false;
+                        CheckBox_ShowShadowColor.Enabled = false;
+                        TextBox_BoundsWidth.Enabled = false;
+                        TextBox_BoundsHeight.Enabled = false;
+
+                        Me.FormStyle = Com.WinForm.FormStyle.Fixed;
+                        Me.EnableFullScreen = false;
+                        Me.ShowIconOnCaptionBar = false;
+                        Me.Theme = Com.WinForm.Theme.Black;
+                        Me.ThemeColor = new Com.ColorX(Color.Black);
+                        Me.ShowCaption = false;
+                        Me.ShowCaptionBarColor = false;
+                        Me.EnableCaptionBarTransparent = false;
+                        Me.ShowShadowColor = false;
+
+                        Me.Size = ImmersiveExperienceBackgroundImage.Size;
+
+                        Me.CaptionBarBackgroundImage = ImmersiveExperienceBackgroundImage;
+
+                        Panel_Main.Refresh();
+                    }
+                    else
+                    {
+                        CheckBox_ImmersiveExperience.CheckedChanged -= CheckBox_ImmersiveExperience_CheckedChanged;
+                        CheckBox_ImmersiveExperience.Checked = false;
+                        CheckBox_ImmersiveExperience.CheckedChanged += CheckBox_ImmersiveExperience_CheckedChanged;
+                    }
+                }
+                else
+                {
+                    ImmersiveExperienceBackgroundImage = null;
+
+                    ComboBox_FormStyleEnum.Enabled = true;
+                    CheckBox_EnableFullScreen.Enabled = true;
+                    CheckBox_ShowIconOnCaptionBar.Enabled = true;
+                    ComboBox_ThemeEnum.Enabled = true;
+                    Label_ThemeColor_Value.Enabled = true;
+                    CheckBox_ShowCaption.Enabled = true;
+                    Label_CaptionFont_Value.Enabled = true;
+                    ComboBox_CaptionAlignEnum.Enabled = true;
+                    CheckBox_ShowCaptionBarColor.Enabled = true;
+                    CheckBox_EnableCaptionBarTransparent.Enabled = true;
+                    CheckBox_ShowCaptionBarColor.Enabled = true;
+                    CheckBox_ShowShadowColor.Enabled = true;
+                    TextBox_BoundsWidth.Enabled = true;
+                    TextBox_BoundsHeight.Enabled = true;
+
+                    Me.CaptionBarBackgroundImage = null;
+
+                    Panel_Main.Refresh();
+                }
+            }
+        }
+
         #endregion
 
         #region 背景绘图
+
+        private Bitmap ImmersiveExperienceBackgroundImage = null;
+
+        private void Panel_Main_Paint(object sender, PaintEventArgs e)
+        {
+            if (CheckBox_ImmersiveExperience.Checked && ImmersiveExperienceBackgroundImage != null)
+            {
+                e.Graphics.DrawImage(ImmersiveExperienceBackgroundImage, new Point(0, -Me.CaptionBarHeight));
+            }
+        }
 
         private void Panel_FormStyle_Paint(object sender, PaintEventArgs e)
         {
@@ -653,6 +753,16 @@ namespace WinFormApp
                     e.Graphics.DrawRectangle(Border_Shadow, Com.Geometry.GetMinimumBoundingRectangleOfControls(new Control[] { TextBox_BoundsWidth, TextBox_BoundsHeight }, 3));
                     e.Graphics.DrawRectangle(Border, Com.Geometry.GetMinimumBoundingRectangleOfControls(new Control[] { TextBox_BoundsWidth, TextBox_BoundsHeight }, 2));
                 }
+            }
+        }
+
+        private void Panel_Other_Paint(object sender, PaintEventArgs e)
+        {
+            using (Pen P = new Pen(Me.RecommendColors.Border_DEC.ToColor(), 1))
+            {
+                Control Cntr = sender as Control;
+                Control Ctrl = Label_Other;
+                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
             }
         }
 

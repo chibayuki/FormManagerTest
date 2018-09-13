@@ -71,11 +71,16 @@
             this.TextBox_BoundsWidth = new System.Windows.Forms.TextBox();
             this.Label_BoundsSizeSeparator = new System.Windows.Forms.Label();
             this.TextBox_BoundsHeight = new System.Windows.Forms.TextBox();
+            this.Panel_Other = new System.Windows.Forms.Panel();
+            this.Label_Other = new System.Windows.Forms.Label();
+            this.CheckBox_ImmersiveExperience = new System.Windows.Forms.CheckBox();
+            this.OpenFileDialog_ImmersiveExperience = new System.Windows.Forms.OpenFileDialog();
             this.Panel_Main.SuspendLayout();
             this.Panel_Client.SuspendLayout();
             this.Panel_FormStyle.SuspendLayout();
             this.Panel_FormAppearance.SuspendLayout();
             this.Panel_FormState.SuspendLayout();
+            this.Panel_Other.SuspendLayout();
             this.SuspendLayout();
             // 
             // ComboBox_FormStateEnum
@@ -302,17 +307,19 @@
             this.Panel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Main.Location = new System.Drawing.Point(0, 0);
             this.Panel_Main.Name = "Panel_Main";
-            this.Panel_Main.Size = new System.Drawing.Size(350, 650);
+            this.Panel_Main.Size = new System.Drawing.Size(350, 700);
             this.Panel_Main.TabIndex = 0;
+            this.Panel_Main.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Main_Paint);
             // 
             // Panel_Client
             // 
             this.Panel_Client.Controls.Add(this.Panel_FormStyle);
             this.Panel_Client.Controls.Add(this.Panel_FormAppearance);
             this.Panel_Client.Controls.Add(this.Panel_FormState);
+            this.Panel_Client.Controls.Add(this.Panel_Other);
             this.Panel_Client.Location = new System.Drawing.Point(0, 0);
             this.Panel_Client.Name = "Panel_Client";
-            this.Panel_Client.Size = new System.Drawing.Size(350, 650);
+            this.Panel_Client.Size = new System.Drawing.Size(350, 700);
             this.Panel_Client.TabIndex = 0;
             // 
             // Panel_FormStyle
@@ -333,13 +340,13 @@
             // Label_FormStyle
             // 
             this.Label_FormStyle.AutoSize = true;
-            this.Label_FormStyle.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_FormStyle.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Label_FormStyle.ForeColor = System.Drawing.Color.White;
             this.Label_FormStyle.Location = new System.Drawing.Point(0, 0);
             this.Label_FormStyle.Name = "Label_FormStyle";
-            this.Label_FormStyle.Size = new System.Drawing.Size(70, 17);
+            this.Label_FormStyle.Size = new System.Drawing.Size(69, 20);
             this.Label_FormStyle.TabIndex = 0;
-            this.Label_FormStyle.Text = "FormStyle";
+            this.Label_FormStyle.Text = "窗口样式";
             // 
             // Label_FormStyleEnum
             // 
@@ -378,13 +385,13 @@
             // Label_FormAppearance
             // 
             this.Label_FormAppearance.AutoSize = true;
-            this.Label_FormAppearance.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_FormAppearance.Font = new System.Drawing.Font("微软雅黑", 11.25F);
             this.Label_FormAppearance.ForeColor = System.Drawing.Color.White;
             this.Label_FormAppearance.Location = new System.Drawing.Point(0, 0);
             this.Label_FormAppearance.Name = "Label_FormAppearance";
-            this.Label_FormAppearance.Size = new System.Drawing.Size(112, 17);
+            this.Label_FormAppearance.Size = new System.Drawing.Size(69, 20);
             this.Label_FormAppearance.TabIndex = 0;
-            this.Label_FormAppearance.Text = "FormAppearance";
+            this.Label_FormAppearance.Text = "窗口外观";
             // 
             // Label_ThemeEnum
             // 
@@ -424,7 +431,7 @@
             this.Label_Caption.AutoSize = true;
             this.Label_Caption.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Label_Caption.ForeColor = System.Drawing.Color.White;
-            this.Label_Caption.Location = new System.Drawing.Point(15, 114);
+            this.Label_Caption.Location = new System.Drawing.Point(15, 89);
             this.Label_Caption.Name = "Label_Caption";
             this.Label_Caption.Size = new System.Drawing.Size(56, 17);
             this.Label_Caption.TabIndex = 0;
@@ -434,7 +441,7 @@
             // 
             this.TextBox_Caption.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBox_Caption.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.TextBox_Caption.Location = new System.Drawing.Point(115, 114);
+            this.TextBox_Caption.Location = new System.Drawing.Point(115, 89);
             this.TextBox_Caption.Name = "TextBox_Caption";
             this.TextBox_Caption.Size = new System.Drawing.Size(170, 16);
             this.TextBox_Caption.TabIndex = 0;
@@ -448,7 +455,7 @@
             this.CheckBox_ShowCaption.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_ShowCaption.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.CheckBox_ShowCaption.ForeColor = System.Drawing.Color.White;
-            this.CheckBox_ShowCaption.Location = new System.Drawing.Point(15, 85);
+            this.CheckBox_ShowCaption.Location = new System.Drawing.Point(15, 115);
             this.CheckBox_ShowCaption.Name = "CheckBox_ShowCaption";
             this.CheckBox_ShowCaption.Size = new System.Drawing.Size(103, 21);
             this.CheckBox_ShowCaption.TabIndex = 0;
@@ -507,20 +514,20 @@
             this.Panel_FormState.Controls.Add(this.TextBox_BoundsHeight);
             this.Panel_FormState.Location = new System.Drawing.Point(25, 465);
             this.Panel_FormState.Name = "Panel_FormState";
-            this.Panel_FormState.Size = new System.Drawing.Size(300, 160);
+            this.Panel_FormState.Size = new System.Drawing.Size(300, 150);
             this.Panel_FormState.TabIndex = 0;
             this.Panel_FormState.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_FormState_Paint);
             // 
             // Label_FormState
             // 
             this.Label_FormState.AutoSize = true;
-            this.Label_FormState.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_FormState.Font = new System.Drawing.Font("微软雅黑", 11.25F);
             this.Label_FormState.ForeColor = System.Drawing.Color.White;
             this.Label_FormState.Location = new System.Drawing.Point(0, 0);
             this.Label_FormState.Name = "Label_FormState";
-            this.Label_FormState.Size = new System.Drawing.Size(71, 17);
+            this.Label_FormState.Size = new System.Drawing.Size(69, 20);
             this.Label_FormState.TabIndex = 0;
-            this.Label_FormState.Text = "FormState";
+            this.Label_FormState.Text = "窗口状态";
             // 
             // Label_FormStateEnum
             // 
@@ -565,6 +572,7 @@
             this.TextBox_BoundsX.Size = new System.Drawing.Size(75, 16);
             this.TextBox_BoundsX.TabIndex = 0;
             this.TextBox_BoundsX.TabStop = false;
+            this.TextBox_BoundsX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TextBox_BoundsX.TextChanged += new System.EventHandler(this.TextBox_BoundsX_TextChanged);
             // 
             // Label_BoundsLocationSeparator
@@ -588,6 +596,7 @@
             this.TextBox_BoundsY.Size = new System.Drawing.Size(75, 16);
             this.TextBox_BoundsY.TabIndex = 0;
             this.TextBox_BoundsY.TabStop = false;
+            this.TextBox_BoundsY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TextBox_BoundsY.TextChanged += new System.EventHandler(this.TextBox_BoundsY_TextChanged);
             // 
             // Label_BoundsSize
@@ -595,7 +604,7 @@
             this.Label_BoundsSize.AutoSize = true;
             this.Label_BoundsSize.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Label_BoundsSize.ForeColor = System.Drawing.Color.White;
-            this.Label_BoundsSize.Location = new System.Drawing.Point(15, 124);
+            this.Label_BoundsSize.Location = new System.Drawing.Point(15, 119);
             this.Label_BoundsSize.Name = "Label_BoundsSize";
             this.Label_BoundsSize.Size = new System.Drawing.Size(34, 17);
             this.Label_BoundsSize.TabIndex = 0;
@@ -605,12 +614,13 @@
             // 
             this.TextBox_BoundsWidth.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBox_BoundsWidth.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.TextBox_BoundsWidth.Location = new System.Drawing.Point(115, 124);
+            this.TextBox_BoundsWidth.Location = new System.Drawing.Point(115, 119);
             this.TextBox_BoundsWidth.MaxLength = 5;
             this.TextBox_BoundsWidth.Name = "TextBox_BoundsWidth";
             this.TextBox_BoundsWidth.Size = new System.Drawing.Size(75, 16);
             this.TextBox_BoundsWidth.TabIndex = 0;
             this.TextBox_BoundsWidth.TabStop = false;
+            this.TextBox_BoundsWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TextBox_BoundsWidth.TextChanged += new System.EventHandler(this.TextBox_BoundsWidth_TextChanged);
             // 
             // Label_BoundsSizeSeparator
@@ -618,7 +628,7 @@
             this.Label_BoundsSizeSeparator.AutoSize = true;
             this.Label_BoundsSizeSeparator.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Label_BoundsSizeSeparator.ForeColor = System.Drawing.Color.White;
-            this.Label_BoundsSizeSeparator.Location = new System.Drawing.Point(193, 124);
+            this.Label_BoundsSizeSeparator.Location = new System.Drawing.Point(193, 119);
             this.Label_BoundsSizeSeparator.Name = "Label_BoundsSizeSeparator";
             this.Label_BoundsSizeSeparator.Size = new System.Drawing.Size(14, 17);
             this.Label_BoundsSizeSeparator.TabIndex = 0;
@@ -628,20 +638,61 @@
             // 
             this.TextBox_BoundsHeight.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBox_BoundsHeight.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.TextBox_BoundsHeight.Location = new System.Drawing.Point(210, 124);
+            this.TextBox_BoundsHeight.Location = new System.Drawing.Point(210, 119);
             this.TextBox_BoundsHeight.MaxLength = 5;
             this.TextBox_BoundsHeight.Name = "TextBox_BoundsHeight";
             this.TextBox_BoundsHeight.Size = new System.Drawing.Size(75, 16);
             this.TextBox_BoundsHeight.TabIndex = 0;
             this.TextBox_BoundsHeight.TabStop = false;
+            this.TextBox_BoundsHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TextBox_BoundsHeight.TextChanged += new System.EventHandler(this.TextBox_BoundsHeight_TextChanged);
+            // 
+            // Panel_Other
+            // 
+            this.Panel_Other.Controls.Add(this.Label_Other);
+            this.Panel_Other.Controls.Add(this.CheckBox_ImmersiveExperience);
+            this.Panel_Other.Location = new System.Drawing.Point(25, 615);
+            this.Panel_Other.Name = "Panel_Other";
+            this.Panel_Other.Size = new System.Drawing.Size(300, 60);
+            this.Panel_Other.TabIndex = 0;
+            this.Panel_Other.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Other_Paint);
+            // 
+            // Label_Other
+            // 
+            this.Label_Other.AutoSize = true;
+            this.Label_Other.Font = new System.Drawing.Font("微软雅黑", 11.25F);
+            this.Label_Other.ForeColor = System.Drawing.Color.White;
+            this.Label_Other.Location = new System.Drawing.Point(0, 0);
+            this.Label_Other.Name = "Label_Other";
+            this.Label_Other.Size = new System.Drawing.Size(39, 20);
+            this.Label_Other.TabIndex = 0;
+            this.Label_Other.Text = "其他";
+            // 
+            // CheckBox_ImmersiveExperience
+            // 
+            this.CheckBox_ImmersiveExperience.AutoSize = true;
+            this.CheckBox_ImmersiveExperience.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CheckBox_ImmersiveExperience.ForeColor = System.Drawing.Color.White;
+            this.CheckBox_ImmersiveExperience.Location = new System.Drawing.Point(15, 30);
+            this.CheckBox_ImmersiveExperience.Name = "CheckBox_ImmersiveExperience";
+            this.CheckBox_ImmersiveExperience.Size = new System.Drawing.Size(87, 21);
+            this.CheckBox_ImmersiveExperience.TabIndex = 0;
+            this.CheckBox_ImmersiveExperience.TabStop = false;
+            this.CheckBox_ImmersiveExperience.Text = "沉浸式体验";
+            this.CheckBox_ImmersiveExperience.UseVisualStyleBackColor = true;
+            this.CheckBox_ImmersiveExperience.CheckedChanged += new System.EventHandler(this.CheckBox_ImmersiveExperience_CheckedChanged);
+            // 
+            // OpenFileDialog_ImmersiveExperience
+            // 
+            this.OpenFileDialog_ImmersiveExperience.Filter = resources.GetString("OpenFileDialog_ImmersiveExperience.Filter");
+            this.OpenFileDialog_ImmersiveExperience.Title = "选择背景图片";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(350, 650);
+            this.ClientSize = new System.Drawing.Size(350, 700);
             this.Controls.Add(this.Panel_Main);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -655,6 +706,8 @@
             this.Panel_FormAppearance.PerformLayout();
             this.Panel_FormState.ResumeLayout(false);
             this.Panel_FormState.PerformLayout();
+            this.Panel_Other.ResumeLayout(false);
+            this.Panel_Other.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -703,5 +756,9 @@
         private System.Windows.Forms.CheckBox CheckBox_ShowCaption;
         private System.Windows.Forms.Label Label_Caption;
         private System.Windows.Forms.TextBox TextBox_Caption;
+        private System.Windows.Forms.Panel Panel_Other;
+        private System.Windows.Forms.Label Label_Other;
+        private System.Windows.Forms.CheckBox CheckBox_ImmersiveExperience;
+        private System.Windows.Forms.OpenFileDialog OpenFileDialog_ImmersiveExperience;
     }
 }
