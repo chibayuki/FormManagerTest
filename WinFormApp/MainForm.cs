@@ -89,6 +89,7 @@ namespace WinFormApp
             Me.ThemeColor = Com.ColorManipulation.GetRandomColorX();
 
             Me.Loaded += LoadedEvents;
+            Me.FormStyleChanged += FormStyleChangedEvents;
             Me.FormStateChanged += FormStateChangedEvents;
             Me.Move += MoveEvents;
             Me.Resize += ResizeEvents;
@@ -194,6 +195,26 @@ namespace WinFormApp
             TextBox_BoundsHeight.TextChanged += TextBox_BoundsHeight_TextChanged;
         }
 
+        private void FormStyleChangedEvents(object sender, EventArgs e)
+        {
+            ComboBox_FormStyleEnum.SelectedIndexChanged -= ComboBox_FormStyleEnum_SelectedIndexChanged;
+            ComboBox_FormStyleEnum.SelectedIndex = (int)Me.FormStyle;
+            ComboBox_FormStyleEnum.SelectedIndexChanged += ComboBox_FormStyleEnum_SelectedIndexChanged;
+
+            CheckBox_EnableFullScreen.CheckedChanged -= CheckBox_EnableFullScreen_CheckedChanged;
+            CheckBox_ShowIconOnCaptionBar.CheckedChanged -= CheckBox_ShowIconOnCaptionBar_CheckedChanged;
+            CheckBox_TopMost.CheckedChanged -= CheckBox_TopMost_CheckedChanged;
+            CheckBox_ShowInTaskbar.CheckedChanged -= CheckBox_ShowInTaskbar_CheckedChanged;
+            CheckBox_EnableFullScreen.Checked = Me.EnableFullScreen;
+            CheckBox_ShowIconOnCaptionBar.Checked = Me.ShowIconOnCaptionBar;
+            CheckBox_TopMost.Checked = Me.TopMost;
+            CheckBox_ShowInTaskbar.Checked = Me.ShowInTaskbar;
+            CheckBox_EnableFullScreen.CheckedChanged += CheckBox_EnableFullScreen_CheckedChanged;
+            CheckBox_ShowIconOnCaptionBar.CheckedChanged += CheckBox_ShowIconOnCaptionBar_CheckedChanged;
+            CheckBox_TopMost.CheckedChanged += CheckBox_TopMost_CheckedChanged;
+            CheckBox_ShowInTaskbar.CheckedChanged += CheckBox_ShowInTaskbar_CheckedChanged;
+        }
+
         private void FormStateChangedEvents(object sender, EventArgs e)
         {
             ComboBox_FormStateEnum.SelectedIndexChanged -= ComboBox_FormStateEnum_SelectedIndexChanged;
@@ -227,6 +248,14 @@ namespace WinFormApp
 
         private void ThemeChangedEvents(object sender, EventArgs e)
         {
+            ComboBox_ThemeEnum.SelectedIndexChanged -= ComboBox_ThemeEnum_SelectedIndexChanged;
+            ComboBox_ThemeEnum.SelectedIndex = (int)Me.Theme;
+            ComboBox_ThemeEnum.SelectedIndexChanged += ComboBox_ThemeEnum_SelectedIndexChanged;
+
+            Label_ThemeColor_Value.Text = Com.ColorManipulation.GetColorName(Me.ThemeColor);
+
+            //
+
             Label_FormStyle.ForeColor = Me.RecommendColors.Text_INC.ToColor();
 
             Label_FormStyleEnum.ForeColor = Me.RecommendColors.Text.ToColor();
@@ -246,13 +275,7 @@ namespace WinFormApp
             ComboBox_ThemeEnum.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
             ComboBox_ThemeEnum.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
 
-            ComboBox_ThemeEnum.SelectedIndexChanged -= ComboBox_ThemeEnum_SelectedIndexChanged;
-            ComboBox_ThemeEnum.SelectedIndex = (int)Me.Theme;
-            ComboBox_ThemeEnum.SelectedIndexChanged += ComboBox_ThemeEnum_SelectedIndexChanged;
-
             Label_ThemeColor.ForeColor = Label_ThemeColor_Value.ForeColor = Me.RecommendColors.Text.ToColor();
-
-            Label_ThemeColor_Value.Text = Com.ColorManipulation.GetColorName(Me.ThemeColor);
 
             Label_Caption.ForeColor = Me.RecommendColors.Text.ToColor();
             TextBox_Caption.ForeColor = Me.RecommendColors.Text.ToColor();
@@ -357,6 +380,8 @@ namespace WinFormApp
             }
         }
 
+        //
+
         private void ComboBox_ThemeEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox Ctrl = sender as ComboBox;
@@ -459,6 +484,8 @@ namespace WinFormApp
                 Me.ShowShadowColor = Ctrl.Checked;
             }
         }
+
+        //
 
         private void ComboBox_FormStateEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -615,6 +642,10 @@ namespace WinFormApp
             }
         }
 
+        //
+
+        private Bitmap ImmersiveExperienceBackgroundImage = null;
+
         private void CheckBox_ImmersiveExperience_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox Ctrl = sender as CheckBox;
@@ -694,8 +725,6 @@ namespace WinFormApp
         #endregion
 
         #region 背景绘图
-
-        private Bitmap ImmersiveExperienceBackgroundImage = null;
 
         private void Panel_Main_Paint(object sender, PaintEventArgs e)
         {
