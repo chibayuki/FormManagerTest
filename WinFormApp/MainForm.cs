@@ -646,6 +646,17 @@ namespace WinFormApp
 
         private Bitmap ImmersiveExperienceBackgroundImage = null;
 
+        private Com.WinForm.FormStyle FormStyle_BeforeImmersiveExperience;
+        private bool EnableFullScreen_BeforeImmersiveExperience;
+        private bool ShowIconOnCaptionBar_BeforeImmersiveExperience;
+        private Com.WinForm.Theme Theme_BeforeImmersiveExperience;
+        private Com.ColorX ThemeColor_BeforeImmersiveExperience;
+        private bool ShowCaption_BeforeImmersiveExperience;
+        private bool ShowCaptionBarColor_BeforeImmersiveExperience;
+        private bool EnableCaptionBarTransparent_BeforeImmersiveExperience;
+        private bool ShowShadowColor_BeforeImmersiveExperience;
+        private Size Size_BeforeImmersiveExperience;
+
         private void CheckBox_ImmersiveExperience_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox Ctrl = sender as CheckBox;
@@ -673,6 +684,17 @@ namespace WinFormApp
                         TextBox_BoundsWidth.Enabled = false;
                         TextBox_BoundsHeight.Enabled = false;
 
+                        FormStyle_BeforeImmersiveExperience = Me.FormStyle;
+                        EnableFullScreen_BeforeImmersiveExperience = Me.EnableFullScreen;
+                        ShowIconOnCaptionBar_BeforeImmersiveExperience = Me.ShowIconOnCaptionBar;
+                        Theme_BeforeImmersiveExperience = Me.Theme;
+                        ThemeColor_BeforeImmersiveExperience = Me.ThemeColor;
+                        ShowCaption_BeforeImmersiveExperience = Me.ShowCaption;
+                        ShowCaptionBarColor_BeforeImmersiveExperience = Me.ShowCaptionBarColor;
+                        EnableCaptionBarTransparent_BeforeImmersiveExperience = Me.EnableCaptionBarTransparent;
+                        ShowShadowColor_BeforeImmersiveExperience = Me.ShowShadowColor;
+                        Size_BeforeImmersiveExperience = Me.Size;
+
                         Me.FormStyle = Com.WinForm.FormStyle.Fixed;
                         Me.EnableFullScreen = false;
                         Me.ShowIconOnCaptionBar = false;
@@ -682,7 +704,6 @@ namespace WinFormApp
                         Me.ShowCaptionBarColor = false;
                         Me.EnableCaptionBarTransparent = false;
                         Me.ShowShadowColor = false;
-
                         Me.Size = ImmersiveExperienceBackgroundImage.Size;
 
                         Me.CaptionBarBackgroundImage = ImmersiveExperienceBackgroundImage;
@@ -698,7 +719,11 @@ namespace WinFormApp
                 }
                 else
                 {
-                    ImmersiveExperienceBackgroundImage = null;
+                    if (ImmersiveExperienceBackgroundImage != null)
+                    {
+                        ImmersiveExperienceBackgroundImage.Dispose();
+                        ImmersiveExperienceBackgroundImage = null;
+                    }
 
                     ComboBox_FormStyleEnum.Enabled = true;
                     CheckBox_EnableFullScreen.Enabled = true;
@@ -714,6 +739,17 @@ namespace WinFormApp
                     CheckBox_ShowShadowColor.Enabled = true;
                     TextBox_BoundsWidth.Enabled = true;
                     TextBox_BoundsHeight.Enabled = true;
+
+                    Me.FormStyle = FormStyle_BeforeImmersiveExperience;
+                    Me.EnableFullScreen = EnableFullScreen_BeforeImmersiveExperience;
+                    Me.ShowIconOnCaptionBar = ShowIconOnCaptionBar_BeforeImmersiveExperience;
+                    Me.Theme = Theme_BeforeImmersiveExperience;
+                    Me.ThemeColor = ThemeColor_BeforeImmersiveExperience;
+                    Me.ShowCaption = ShowCaption_BeforeImmersiveExperience;
+                    Me.ShowCaptionBarColor = ShowCaptionBarColor_BeforeImmersiveExperience;
+                    Me.EnableCaptionBarTransparent = EnableCaptionBarTransparent_BeforeImmersiveExperience;
+                    Me.ShowShadowColor = ShowShadowColor_BeforeImmersiveExperience;
+                    Me.Size = Size_BeforeImmersiveExperience;
 
                     Me.CaptionBarBackgroundImage = null;
 
