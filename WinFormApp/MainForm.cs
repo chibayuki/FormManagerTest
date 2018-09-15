@@ -89,7 +89,6 @@ namespace WinFormApp
             Me.ThemeColor = Com.ColorManipulation.GetRandomColorX();
 
             Me.Loaded += LoadedEvents;
-            Me.FormStyleChanged += FormStyleChangedEvents;
             Me.FormStateChanged += FormStateChangedEvents;
             Me.Move += MoveEvents;
             Me.Resize += ResizeEvents;
@@ -193,26 +192,6 @@ namespace WinFormApp
             TextBox_BoundsY.TextChanged += TextBox_BoundsY_TextChanged;
             TextBox_BoundsWidth.TextChanged += TextBox_BoundsWidth_TextChanged;
             TextBox_BoundsHeight.TextChanged += TextBox_BoundsHeight_TextChanged;
-        }
-
-        private void FormStyleChangedEvents(object sender, EventArgs e)
-        {
-            ComboBox_FormStyleEnum.SelectedIndexChanged -= ComboBox_FormStyleEnum_SelectedIndexChanged;
-            ComboBox_FormStyleEnum.SelectedIndex = (int)Me.FormStyle;
-            ComboBox_FormStyleEnum.SelectedIndexChanged += ComboBox_FormStyleEnum_SelectedIndexChanged;
-
-            CheckBox_EnableFullScreen.CheckedChanged -= CheckBox_EnableFullScreen_CheckedChanged;
-            CheckBox_ShowIconOnCaptionBar.CheckedChanged -= CheckBox_ShowIconOnCaptionBar_CheckedChanged;
-            CheckBox_TopMost.CheckedChanged -= CheckBox_TopMost_CheckedChanged;
-            CheckBox_ShowInTaskbar.CheckedChanged -= CheckBox_ShowInTaskbar_CheckedChanged;
-            CheckBox_EnableFullScreen.Checked = Me.EnableFullScreen;
-            CheckBox_ShowIconOnCaptionBar.Checked = Me.ShowIconOnCaptionBar;
-            CheckBox_TopMost.Checked = Me.TopMost;
-            CheckBox_ShowInTaskbar.Checked = Me.ShowInTaskbar;
-            CheckBox_EnableFullScreen.CheckedChanged += CheckBox_EnableFullScreen_CheckedChanged;
-            CheckBox_ShowIconOnCaptionBar.CheckedChanged += CheckBox_ShowIconOnCaptionBar_CheckedChanged;
-            CheckBox_TopMost.CheckedChanged += CheckBox_TopMost_CheckedChanged;
-            CheckBox_ShowInTaskbar.CheckedChanged += CheckBox_ShowInTaskbar_CheckedChanged;
         }
 
         private void FormStateChangedEvents(object sender, EventArgs e)
@@ -663,12 +642,53 @@ namespace WinFormApp
 
             if (Ctrl != null)
             {
+                Action UpdateUI = () =>
+                {
+                    ComboBox_FormStyleEnum.SelectedIndexChanged -= ComboBox_FormStyleEnum_SelectedIndexChanged;
+                    ComboBox_FormStyleEnum.SelectedIndex = (int)Me.FormStyle;
+                    ComboBox_FormStyleEnum.SelectedIndexChanged += ComboBox_FormStyleEnum_SelectedIndexChanged;
+
+                    CheckBox_EnableFullScreen.CheckedChanged -= CheckBox_EnableFullScreen_CheckedChanged;
+                    CheckBox_ShowIconOnCaptionBar.CheckedChanged -= CheckBox_ShowIconOnCaptionBar_CheckedChanged;
+                    CheckBox_TopMost.CheckedChanged -= CheckBox_TopMost_CheckedChanged;
+                    CheckBox_ShowInTaskbar.CheckedChanged -= CheckBox_ShowInTaskbar_CheckedChanged;
+                    CheckBox_EnableFullScreen.Checked = Me.EnableFullScreen;
+                    CheckBox_ShowIconOnCaptionBar.Checked = Me.ShowIconOnCaptionBar;
+                    CheckBox_TopMost.Checked = Me.TopMost;
+                    CheckBox_ShowInTaskbar.Checked = Me.ShowInTaskbar;
+                    CheckBox_EnableFullScreen.CheckedChanged += CheckBox_EnableFullScreen_CheckedChanged;
+                    CheckBox_ShowIconOnCaptionBar.CheckedChanged += CheckBox_ShowIconOnCaptionBar_CheckedChanged;
+                    CheckBox_TopMost.CheckedChanged += CheckBox_TopMost_CheckedChanged;
+                    CheckBox_ShowInTaskbar.CheckedChanged += CheckBox_ShowInTaskbar_CheckedChanged;
+
+                    //
+
+                    ComboBox_ThemeEnum.SelectedIndexChanged -= ComboBox_ThemeEnum_SelectedIndexChanged;
+                    ComboBox_ThemeEnum.SelectedIndex = (int)Me.Theme;
+                    ComboBox_ThemeEnum.SelectedIndexChanged += ComboBox_ThemeEnum_SelectedIndexChanged;
+
+                    Label_ThemeColor_Value.Text = Com.ColorManipulation.GetColorName(Me.ThemeColor);
+
+                    CheckBox_ShowCaption.CheckedChanged -= CheckBox_ShowCaption_CheckedChanged;
+                    CheckBox_ShowCaption.Checked = Me.ShowCaption;
+                    CheckBox_ShowCaption.CheckedChanged += CheckBox_ShowCaption_CheckedChanged;
+
+                    CheckBox_ShowCaptionBarColor.CheckedChanged -= CheckBox_ShowCaptionBarColor_CheckedChanged;
+                    CheckBox_EnableCaptionBarTransparent.CheckedChanged -= CheckBox_EnableCaptionBarTransparent_CheckedChanged;
+                    CheckBox_ShowCaptionBarColor.Checked = Me.ShowCaptionBarColor;
+                    CheckBox_EnableCaptionBarTransparent.Checked = Me.EnableCaptionBarTransparent;
+                    CheckBox_ShowCaptionBarColor.CheckedChanged += CheckBox_ShowCaptionBarColor_CheckedChanged;
+                    CheckBox_EnableCaptionBarTransparent.CheckedChanged += CheckBox_EnableCaptionBarTransparent_CheckedChanged;
+
+                    CheckBox_ShowShadowColor.CheckedChanged -= CheckBox_ShowShadowColor_CheckedChanged;
+                    CheckBox_ShowShadowColor.Checked = Me.ShowShadowColor;
+                    CheckBox_ShowShadowColor.CheckedChanged += CheckBox_ShowShadowColor_CheckedChanged;
+                };
+
                 if (Ctrl.Checked)
                 {
                     if (OpenFileDialog_ImmersiveExperience.ShowDialog() == DialogResult.OK)
                     {
-                        ImmersiveExperienceBackgroundImage = new Bitmap(Image.FromFile(OpenFileDialog_ImmersiveExperience.FileName));
-
                         ComboBox_FormStyleEnum.Enabled = false;
                         CheckBox_EnableFullScreen.Enabled = false;
                         CheckBox_ShowIconOnCaptionBar.Enabled = false;
@@ -684,31 +704,41 @@ namespace WinFormApp
                         TextBox_BoundsWidth.Enabled = false;
                         TextBox_BoundsHeight.Enabled = false;
 
+                        //
+
                         FormStyle_BeforeImmersiveExperience = Me.FormStyle;
                         EnableFullScreen_BeforeImmersiveExperience = Me.EnableFullScreen;
                         ShowIconOnCaptionBar_BeforeImmersiveExperience = Me.ShowIconOnCaptionBar;
+
+                        Me.FormStyle = Com.WinForm.FormStyle.Fixed;
+                        Me.EnableFullScreen = false;
+                        Me.ShowIconOnCaptionBar = false;
+
                         Theme_BeforeImmersiveExperience = Me.Theme;
                         ThemeColor_BeforeImmersiveExperience = Me.ThemeColor;
                         ShowCaption_BeforeImmersiveExperience = Me.ShowCaption;
                         ShowCaptionBarColor_BeforeImmersiveExperience = Me.ShowCaptionBarColor;
                         EnableCaptionBarTransparent_BeforeImmersiveExperience = Me.EnableCaptionBarTransparent;
                         ShowShadowColor_BeforeImmersiveExperience = Me.ShowShadowColor;
-                        Size_BeforeImmersiveExperience = Me.Size;
 
-                        Me.FormStyle = Com.WinForm.FormStyle.Fixed;
-                        Me.EnableFullScreen = false;
-                        Me.ShowIconOnCaptionBar = false;
                         Me.Theme = Com.WinForm.Theme.Black;
                         Me.ThemeColor = new Com.ColorX(Color.Black);
                         Me.ShowCaption = false;
                         Me.ShowCaptionBarColor = false;
                         Me.EnableCaptionBarTransparent = false;
                         Me.ShowShadowColor = false;
-                        Me.Size = ImmersiveExperienceBackgroundImage.Size;
 
+                        ImmersiveExperienceBackgroundImage = new Bitmap(Image.FromFile(OpenFileDialog_ImmersiveExperience.FileName));
+                        Size_BeforeImmersiveExperience = Me.Size;
+
+                        Me.Size = ImmersiveExperienceBackgroundImage.Size;
                         Me.CaptionBarBackgroundImage = ImmersiveExperienceBackgroundImage;
 
+                        //
+
                         Panel_Main.Refresh();
+
+                        UpdateUI();
                     }
                     else
                     {
@@ -727,6 +757,21 @@ namespace WinFormApp
                         ImmersiveExperienceBackgroundImage = null;
                     }
 
+                    Me.FormStyle = FormStyle_BeforeImmersiveExperience;
+                    Me.EnableFullScreen = EnableFullScreen_BeforeImmersiveExperience;
+                    Me.ShowIconOnCaptionBar = ShowIconOnCaptionBar_BeforeImmersiveExperience;
+
+                    Me.Theme = Theme_BeforeImmersiveExperience;
+                    Me.ThemeColor = ThemeColor_BeforeImmersiveExperience;
+                    Me.ShowCaption = ShowCaption_BeforeImmersiveExperience;
+                    Me.ShowCaptionBarColor = ShowCaptionBarColor_BeforeImmersiveExperience;
+                    Me.EnableCaptionBarTransparent = EnableCaptionBarTransparent_BeforeImmersiveExperience;
+                    Me.ShowShadowColor = ShowShadowColor_BeforeImmersiveExperience;
+
+                    Me.Size = Size_BeforeImmersiveExperience;
+
+                    //
+
                     ComboBox_FormStyleEnum.Enabled = true;
                     CheckBox_EnableFullScreen.Enabled = true;
                     CheckBox_ShowIconOnCaptionBar.Enabled = true;
@@ -742,18 +787,11 @@ namespace WinFormApp
                     TextBox_BoundsWidth.Enabled = true;
                     TextBox_BoundsHeight.Enabled = true;
 
-                    Me.FormStyle = FormStyle_BeforeImmersiveExperience;
-                    Me.EnableFullScreen = EnableFullScreen_BeforeImmersiveExperience;
-                    Me.ShowIconOnCaptionBar = ShowIconOnCaptionBar_BeforeImmersiveExperience;
-                    Me.Theme = Theme_BeforeImmersiveExperience;
-                    Me.ThemeColor = ThemeColor_BeforeImmersiveExperience;
-                    Me.ShowCaption = ShowCaption_BeforeImmersiveExperience;
-                    Me.ShowCaptionBarColor = ShowCaptionBarColor_BeforeImmersiveExperience;
-                    Me.EnableCaptionBarTransparent = EnableCaptionBarTransparent_BeforeImmersiveExperience;
-                    Me.ShowShadowColor = ShowShadowColor_BeforeImmersiveExperience;
-                    Me.Size = Size_BeforeImmersiveExperience;
+                    //
 
                     Panel_Main.Refresh();
+
+                    UpdateUI();
                 }
             }
         }
