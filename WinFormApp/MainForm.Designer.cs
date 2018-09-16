@@ -74,6 +74,7 @@
             this.Panel_Other = new System.Windows.Forms.Panel();
             this.Label_Other = new System.Windows.Forms.Label();
             this.CheckBox_ImmersiveExperience = new System.Windows.Forms.CheckBox();
+            this.Label_ImmersiveExperience = new System.Windows.Forms.Label();
             this.OpenFileDialog_ImmersiveExperience = new System.Windows.Forms.OpenFileDialog();
             this.Panel_Main.SuspendLayout();
             this.Panel_Client.SuspendLayout();
@@ -651,6 +652,7 @@
             // 
             this.Panel_Other.Controls.Add(this.Label_Other);
             this.Panel_Other.Controls.Add(this.CheckBox_ImmersiveExperience);
+            this.Panel_Other.Controls.Add(this.Label_ImmersiveExperience);
             this.Panel_Other.Location = new System.Drawing.Point(25, 615);
             this.Panel_Other.Name = "Panel_Other";
             this.Panel_Other.Size = new System.Drawing.Size(300, 60);
@@ -681,6 +683,17 @@
             this.CheckBox_ImmersiveExperience.Text = "沉浸式体验";
             this.CheckBox_ImmersiveExperience.UseVisualStyleBackColor = true;
             this.CheckBox_ImmersiveExperience.CheckedChanged += new System.EventHandler(this.CheckBox_ImmersiveExperience_CheckedChanged);
+            // 
+            // Label_ImmersiveExperience
+            // 
+            this.Label_ImmersiveExperience.AutoSize = true;
+            this.Label_ImmersiveExperience.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Label_ImmersiveExperience.ForeColor = System.Drawing.Color.White;
+            this.Label_ImmersiveExperience.Location = new System.Drawing.Point(115, 30);
+            this.Label_ImmersiveExperience.Name = "Label_ImmersiveExperience";
+            this.Label_ImmersiveExperience.Size = new System.Drawing.Size(80, 17);
+            this.Label_ImmersiveExperience.TabIndex = 0;
+            this.Label_ImmersiveExperience.Text = "更改背景图片";
             // 
             // OpenFileDialog_ImmersiveExperience
             // 
@@ -760,5 +773,6 @@
         private System.Windows.Forms.Label Label_Other;
         private System.Windows.Forms.CheckBox CheckBox_ImmersiveExperience;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog_ImmersiveExperience;
+        private System.Windows.Forms.Label Label_ImmersiveExperience;
     }
 }

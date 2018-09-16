@@ -192,6 +192,10 @@ namespace WinFormApp
             TextBox_BoundsY.TextChanged += TextBox_BoundsY_TextChanged;
             TextBox_BoundsWidth.TextChanged += TextBox_BoundsWidth_TextChanged;
             TextBox_BoundsHeight.TextChanged += TextBox_BoundsHeight_TextChanged;
+
+            //
+
+            Label_ImmersiveExperience.Enabled = CheckBox_ImmersiveExperience.Checked;
         }
 
         private void FormStateChangedEvents(object sender, EventArgs e)
@@ -298,11 +302,13 @@ namespace WinFormApp
             Label_Other.ForeColor = Me.RecommendColors.Text_INC.ToColor();
 
             CheckBox_ImmersiveExperience.ForeColor = Me.RecommendColors.Text.ToColor();
+            Label_ImmersiveExperience.ForeColor = Me.RecommendColors.Text.ToColor();
 
             //
 
             Com.WinForm.ControlSubstitution.LabelAsButton(Label_ThemeColor_Value, Label_ThemeColor_Value_Click, Color.Transparent, Me.RecommendColors.Button_DEC.ToColor(), Me.RecommendColors.Button_INC.ToColor(), new Font("微软雅黑", 9F, FontStyle.Underline, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134));
             Com.WinForm.ControlSubstitution.LabelAsButton(Label_CaptionFont_Value, Label_CaptionFont_Value_Click, Color.Transparent, Me.RecommendColors.Button_DEC.ToColor(), Me.RecommendColors.Button_INC.ToColor(), new Font("微软雅黑", 9F, FontStyle.Underline, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134));
+            Com.WinForm.ControlSubstitution.LabelAsButton(Label_ImmersiveExperience, Label_ImmersiveExperience_Click, Color.Transparent, Me.RecommendColors.Button_DEC.ToColor(), Me.RecommendColors.Button_INC.ToColor(), new Font("微软雅黑", 9F, FontStyle.Underline, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134));
         }
 
         #endregion
@@ -687,22 +693,52 @@ namespace WinFormApp
 
                 if (Ctrl.Checked)
                 {
-                    if (OpenFileDialog_ImmersiveExperience.ShowDialog() == DialogResult.OK)
+                    CheckBox_ImmersiveExperience.CheckedChanged -= CheckBox_ImmersiveExperience_CheckedChanged;
+                    CheckBox_ImmersiveExperience.Checked = false;
+                    CheckBox_ImmersiveExperience.CheckedChanged += CheckBox_ImmersiveExperience_CheckedChanged;
+
+                    //
+
+                    if (ImmersiveExperienceBackgroundImage == null)
                     {
-                        ComboBox_FormStyleEnum.Enabled = false;
+                        try
+                        {
+                            if (OpenFileDialog_ImmersiveExperience.ShowDialog() == DialogResult.OK)
+                            {
+                                ImmersiveExperienceBackgroundImage = new Bitmap(Image.FromFile(OpenFileDialog_ImmersiveExperience.FileName));
+                            }
+                        }
+                        catch
+                        {
+                            ImmersiveExperienceBackgroundImage = null;
+                        }
+                    }
+
+                    if (ImmersiveExperienceBackgroundImage != null)
+                    {
+                        CheckBox_ImmersiveExperience.CheckedChanged -= CheckBox_ImmersiveExperience_CheckedChanged;
+                        CheckBox_ImmersiveExperience.Checked = true;
+                        CheckBox_ImmersiveExperience.CheckedChanged += CheckBox_ImmersiveExperience_CheckedChanged;
+
+                        //
+
+                        Label_FormStyleEnum.Enabled = ComboBox_FormStyleEnum.Enabled = false;
                         CheckBox_EnableFullScreen.Enabled = false;
                         CheckBox_ShowIconOnCaptionBar.Enabled = false;
-                        ComboBox_ThemeEnum.Enabled = false;
-                        Label_ThemeColor_Value.Enabled = false;
+
+                        Label_ThemeEnum.Enabled = ComboBox_ThemeEnum.Enabled = false;
+                        Label_ThemeColor.Enabled = Label_ThemeColor_Value.Enabled = false;
                         CheckBox_ShowCaption.Enabled = false;
-                        Label_CaptionFont_Value.Enabled = false;
-                        ComboBox_CaptionAlignEnum.Enabled = false;
+                        Label_CaptionFont.Enabled = Label_CaptionFont_Value.Enabled = false;
+                        Label_CaptionAlignEnum.Enabled = ComboBox_CaptionAlignEnum.Enabled = false;
                         CheckBox_ShowCaptionBarColor.Enabled = false;
                         CheckBox_EnableCaptionBarTransparent.Enabled = false;
                         CheckBox_ShowCaptionBarColor.Enabled = false;
                         CheckBox_ShowShadowColor.Enabled = false;
-                        TextBox_BoundsWidth.Enabled = false;
-                        TextBox_BoundsHeight.Enabled = false;
+
+                        Label_BoundsSize.Enabled = TextBox_BoundsWidth.Enabled = TextBox_BoundsHeight.Enabled = false;
+
+                        Label_ImmersiveExperience.Enabled = true;
 
                         //
 
@@ -728,10 +764,9 @@ namespace WinFormApp
                         Me.EnableCaptionBarTransparent = false;
                         Me.ShowShadowColor = false;
 
-                        ImmersiveExperienceBackgroundImage = new Bitmap(Image.FromFile(OpenFileDialog_ImmersiveExperience.FileName));
                         Size_BeforeImmersiveExperience = Me.Size;
-
                         Me.Size = ImmersiveExperienceBackgroundImage.Size;
+
                         Me.CaptionBarBackgroundImage = ImmersiveExperienceBackgroundImage;
 
                         //
@@ -740,22 +775,10 @@ namespace WinFormApp
 
                         UpdateUI();
                     }
-                    else
-                    {
-                        CheckBox_ImmersiveExperience.CheckedChanged -= CheckBox_ImmersiveExperience_CheckedChanged;
-                        CheckBox_ImmersiveExperience.Checked = false;
-                        CheckBox_ImmersiveExperience.CheckedChanged += CheckBox_ImmersiveExperience_CheckedChanged;
-                    }
                 }
                 else
                 {
                     Me.CaptionBarBackgroundImage = null;
-
-                    if (ImmersiveExperienceBackgroundImage != null)
-                    {
-                        ImmersiveExperienceBackgroundImage.Dispose();
-                        ImmersiveExperienceBackgroundImage = null;
-                    }
 
                     Me.FormStyle = FormStyle_BeforeImmersiveExperience;
                     Me.EnableFullScreen = EnableFullScreen_BeforeImmersiveExperience;
@@ -772,20 +795,23 @@ namespace WinFormApp
 
                     //
 
-                    ComboBox_FormStyleEnum.Enabled = true;
+                    Label_FormStyleEnum.Enabled = ComboBox_FormStyleEnum.Enabled = true;
                     CheckBox_EnableFullScreen.Enabled = true;
                     CheckBox_ShowIconOnCaptionBar.Enabled = true;
-                    ComboBox_ThemeEnum.Enabled = true;
-                    Label_ThemeColor_Value.Enabled = true;
+
+                    Label_ThemeEnum.Enabled = ComboBox_ThemeEnum.Enabled = true;
+                    Label_ThemeColor.Enabled = Label_ThemeColor_Value.Enabled = true;
                     CheckBox_ShowCaption.Enabled = true;
-                    Label_CaptionFont_Value.Enabled = true;
-                    ComboBox_CaptionAlignEnum.Enabled = true;
+                    Label_CaptionFont.Enabled = Label_CaptionFont_Value.Enabled = true;
+                    Label_CaptionAlignEnum.Enabled = ComboBox_CaptionAlignEnum.Enabled = true;
                     CheckBox_ShowCaptionBarColor.Enabled = true;
                     CheckBox_EnableCaptionBarTransparent.Enabled = true;
                     CheckBox_ShowCaptionBarColor.Enabled = true;
                     CheckBox_ShowShadowColor.Enabled = true;
-                    TextBox_BoundsWidth.Enabled = true;
-                    TextBox_BoundsHeight.Enabled = true;
+
+                    Label_BoundsSize.Enabled = TextBox_BoundsWidth.Enabled = TextBox_BoundsHeight.Enabled = true;
+
+                    Label_ImmersiveExperience.Enabled = false;
 
                     //
 
@@ -793,6 +819,37 @@ namespace WinFormApp
 
                     UpdateUI();
                 }
+            }
+        }
+
+        private void Label_ImmersiveExperience_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (OpenFileDialog_ImmersiveExperience.ShowDialog() == DialogResult.OK)
+                {
+                    ImmersiveExperienceBackgroundImage = new Bitmap(Image.FromFile(OpenFileDialog_ImmersiveExperience.FileName));
+
+                    if (ImmersiveExperienceBackgroundImage != null)
+                    {
+                        Me.Size = ImmersiveExperienceBackgroundImage.Size;
+
+                        Me.CaptionBarBackgroundImage = ImmersiveExperienceBackgroundImage;
+
+                        //
+
+                        Panel_Main.Refresh();
+                    }
+                }
+            }
+            catch
+            {
+                ImmersiveExperienceBackgroundImage = null;
+            }
+
+            if (ImmersiveExperienceBackgroundImage == null)
+            {
+                CheckBox_ImmersiveExperience.Checked = false;
             }
         }
 
