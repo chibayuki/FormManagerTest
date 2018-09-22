@@ -41,14 +41,9 @@ namespace WinFormApp
         {
             get
             {
-                const int WS_MINIMIZEBOX = 0x00020000;
-
                 CreateParams CP = base.CreateParams;
 
-                if (Me != null && Me.FormStyle != Com.WinForm.FormStyle.Dialog)
-                {
-                    CP.Style = CP.Style | WS_MINIMIZEBOX;
-                }
+                CP.Style |= 0x00020000;
 
                 return CP;
             }
@@ -110,18 +105,24 @@ namespace WinFormApp
             ComboBox_FormStyleEnum.SelectedIndex = (int)Me.FormStyle;
             ComboBox_FormStyleEnum.SelectedIndexChanged += ComboBox_FormStyleEnum_SelectedIndexChanged;
 
+            CheckBox_EnableMinimize.CheckedChanged -= CheckBox_EnableMinimize_CheckedChanged;
+            CheckBox_EnableMaximize.CheckedChanged -= CheckBox_EnableMaximize_CheckedChanged;
             CheckBox_EnableFullScreen.CheckedChanged -= CheckBox_EnableFullScreen_CheckedChanged;
             CheckBox_ShowIconOnCaptionBar.CheckedChanged -= CheckBox_ShowIconOnCaptionBar_CheckedChanged;
-            CheckBox_TopMost.CheckedChanged -= CheckBox_TopMost_CheckedChanged;
             CheckBox_ShowInTaskbar.CheckedChanged -= CheckBox_ShowInTaskbar_CheckedChanged;
+            CheckBox_TopMost.CheckedChanged -= CheckBox_TopMost_CheckedChanged;
+            CheckBox_EnableMinimize.Checked = Me.EnableMinimize;
+            CheckBox_EnableMaximize.Checked = Me.EnableMaximize;
             CheckBox_EnableFullScreen.Checked = Me.EnableFullScreen;
             CheckBox_ShowIconOnCaptionBar.Checked = Me.ShowIconOnCaptionBar;
-            CheckBox_TopMost.Checked = Me.TopMost;
             CheckBox_ShowInTaskbar.Checked = Me.ShowInTaskbar;
+            CheckBox_TopMost.Checked = Me.TopMost;
+            CheckBox_EnableMinimize.CheckedChanged += CheckBox_EnableMinimize_CheckedChanged;
+            CheckBox_EnableMaximize.CheckedChanged += CheckBox_EnableMaximize_CheckedChanged;
             CheckBox_EnableFullScreen.CheckedChanged += CheckBox_EnableFullScreen_CheckedChanged;
             CheckBox_ShowIconOnCaptionBar.CheckedChanged += CheckBox_ShowIconOnCaptionBar_CheckedChanged;
-            CheckBox_TopMost.CheckedChanged += CheckBox_TopMost_CheckedChanged;
             CheckBox_ShowInTaskbar.CheckedChanged += CheckBox_ShowInTaskbar_CheckedChanged;
+            CheckBox_TopMost.CheckedChanged += CheckBox_TopMost_CheckedChanged;
 
             //
 
@@ -245,10 +246,12 @@ namespace WinFormApp
             ComboBox_FormStyleEnum.ForeColor = Me.RecommendColors.MenuItemText.ToColor();
             ComboBox_FormStyleEnum.BackColor = Me.RecommendColors.MenuItemBackground.ToColor();
 
+            CheckBox_EnableMinimize.ForeColor = Me.RecommendColors.Text.ToColor();
+            CheckBox_EnableMaximize.ForeColor = Me.RecommendColors.Text.ToColor();
             CheckBox_EnableFullScreen.ForeColor = Me.RecommendColors.Text.ToColor();
             CheckBox_ShowIconOnCaptionBar.ForeColor = Me.RecommendColors.Text.ToColor();
-            CheckBox_TopMost.ForeColor = Me.RecommendColors.Text.ToColor();
             CheckBox_ShowInTaskbar.ForeColor = Me.RecommendColors.Text.ToColor();
+            CheckBox_TopMost.ForeColor = Me.RecommendColors.Text.ToColor();
 
             //
 
@@ -325,6 +328,26 @@ namespace WinFormApp
             }
         }
 
+        private void CheckBox_EnableMinimize_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                Me.EnableMinimize = Ctrl.Checked;
+            }
+        }
+
+        private void CheckBox_EnableMaximize_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                Me.EnableMaximize = Ctrl.Checked;
+            }
+        }
+
         private void CheckBox_EnableFullScreen_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox Ctrl = sender as CheckBox;
@@ -345,16 +368,6 @@ namespace WinFormApp
             }
         }
 
-        private void CheckBox_TopMost_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckBox Ctrl = sender as CheckBox;
-
-            if (Ctrl != null)
-            {
-                Me.TopMost = Ctrl.Checked;
-            }
-        }
-
         private void CheckBox_ShowInTaskbar_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox Ctrl = sender as CheckBox;
@@ -362,6 +375,16 @@ namespace WinFormApp
             if (Ctrl != null)
             {
                 Me.ShowInTaskbar = Ctrl.Checked;
+            }
+        }
+
+        private void CheckBox_TopMost_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                Me.TopMost = Ctrl.Checked;
             }
         }
 
@@ -632,6 +655,7 @@ namespace WinFormApp
         private Bitmap ImmersiveExperienceBackgroundImage = null;
 
         private Com.WinForm.FormStyle FormStyle_BeforeImmersiveExperience;
+        private bool EnableMaximize_BeforeImmersiveExperience;
         private bool EnableFullScreen_BeforeImmersiveExperience;
         private bool ShowIconOnCaptionBar_BeforeImmersiveExperience;
         private Com.WinForm.Theme Theme_BeforeImmersiveExperience;
@@ -654,14 +678,17 @@ namespace WinFormApp
                     ComboBox_FormStyleEnum.SelectedIndex = (int)Me.FormStyle;
                     ComboBox_FormStyleEnum.SelectedIndexChanged += ComboBox_FormStyleEnum_SelectedIndexChanged;
 
+                    CheckBox_EnableMaximize.CheckedChanged -= CheckBox_EnableMaximize_CheckedChanged;
                     CheckBox_EnableFullScreen.CheckedChanged -= CheckBox_EnableFullScreen_CheckedChanged;
                     CheckBox_ShowIconOnCaptionBar.CheckedChanged -= CheckBox_ShowIconOnCaptionBar_CheckedChanged;
                     CheckBox_TopMost.CheckedChanged -= CheckBox_TopMost_CheckedChanged;
                     CheckBox_ShowInTaskbar.CheckedChanged -= CheckBox_ShowInTaskbar_CheckedChanged;
+                    CheckBox_EnableMaximize.Checked = Me.EnableMaximize;
                     CheckBox_EnableFullScreen.Checked = Me.EnableFullScreen;
                     CheckBox_ShowIconOnCaptionBar.Checked = Me.ShowIconOnCaptionBar;
                     CheckBox_TopMost.Checked = Me.TopMost;
                     CheckBox_ShowInTaskbar.Checked = Me.ShowInTaskbar;
+                    CheckBox_EnableMaximize.CheckedChanged += CheckBox_EnableMaximize_CheckedChanged;
                     CheckBox_EnableFullScreen.CheckedChanged += CheckBox_EnableFullScreen_CheckedChanged;
                     CheckBox_ShowIconOnCaptionBar.CheckedChanged += CheckBox_ShowIconOnCaptionBar_CheckedChanged;
                     CheckBox_TopMost.CheckedChanged += CheckBox_TopMost_CheckedChanged;
@@ -723,6 +750,7 @@ namespace WinFormApp
                         //
 
                         Label_FormStyleEnum.Enabled = ComboBox_FormStyleEnum.Enabled = false;
+                        CheckBox_EnableMaximize.Enabled = false;
                         CheckBox_EnableFullScreen.Enabled = false;
                         CheckBox_ShowIconOnCaptionBar.Enabled = false;
 
@@ -743,10 +771,12 @@ namespace WinFormApp
                         //
 
                         FormStyle_BeforeImmersiveExperience = Me.FormStyle;
+                        EnableMaximize_BeforeImmersiveExperience = Me.EnableMaximize;
                         EnableFullScreen_BeforeImmersiveExperience = Me.EnableFullScreen;
                         ShowIconOnCaptionBar_BeforeImmersiveExperience = Me.ShowIconOnCaptionBar;
 
                         Me.FormStyle = Com.WinForm.FormStyle.Fixed;
+                        Me.EnableMaximize = false;
                         Me.EnableFullScreen = false;
                         Me.ShowIconOnCaptionBar = false;
 
@@ -781,6 +811,7 @@ namespace WinFormApp
                     Me.CaptionBarBackgroundImage = null;
 
                     Me.FormStyle = FormStyle_BeforeImmersiveExperience;
+                    Me.EnableMaximize = EnableMaximize_BeforeImmersiveExperience;
                     Me.EnableFullScreen = EnableFullScreen_BeforeImmersiveExperience;
                     Me.ShowIconOnCaptionBar = ShowIconOnCaptionBar_BeforeImmersiveExperience;
 
@@ -796,6 +827,7 @@ namespace WinFormApp
                     //
 
                     Label_FormStyleEnum.Enabled = ComboBox_FormStyleEnum.Enabled = true;
+                    CheckBox_EnableMaximize.Enabled = true;
                     CheckBox_EnableFullScreen.Enabled = true;
                     CheckBox_ShowIconOnCaptionBar.Enabled = true;
 

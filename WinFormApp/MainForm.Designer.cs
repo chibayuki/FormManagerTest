@@ -48,6 +48,8 @@
             this.Panel_FormStyle = new System.Windows.Forms.Panel();
             this.Label_FormStyle = new System.Windows.Forms.Label();
             this.Label_FormStyleEnum = new System.Windows.Forms.Label();
+            this.CheckBox_EnableMinimize = new System.Windows.Forms.CheckBox();
+            this.CheckBox_EnableMaximize = new System.Windows.Forms.CheckBox();
             this.Panel_FormAppearance = new System.Windows.Forms.Panel();
             this.Label_FormAppearance = new System.Windows.Forms.Label();
             this.Label_ThemeEnum = new System.Windows.Forms.Label();
@@ -137,8 +139,7 @@
             this.ComboBox_FormStyleEnum.FormattingEnabled = true;
             this.ComboBox_FormStyleEnum.Items.AddRange(new object[] {
             "Sizable",
-            "Fixed",
-            "Dialog"});
+            "Fixed"});
             this.ComboBox_FormStyleEnum.Location = new System.Drawing.Point(115, 30);
             this.ComboBox_FormStyleEnum.Name = "ComboBox_FormStyleEnum";
             this.ComboBox_FormStyleEnum.Size = new System.Drawing.Size(170, 25);
@@ -153,7 +154,7 @@
             this.CheckBox_EnableFullScreen.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_EnableFullScreen.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.CheckBox_EnableFullScreen.ForeColor = System.Drawing.Color.White;
-            this.CheckBox_EnableFullScreen.Location = new System.Drawing.Point(15, 60);
+            this.CheckBox_EnableFullScreen.Location = new System.Drawing.Point(15, 110);
             this.CheckBox_EnableFullScreen.Name = "CheckBox_EnableFullScreen";
             this.CheckBox_EnableFullScreen.Size = new System.Drawing.Size(128, 21);
             this.CheckBox_EnableFullScreen.TabIndex = 0;
@@ -221,7 +222,7 @@
             this.CheckBox_TopMost.AutoSize = true;
             this.CheckBox_TopMost.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.CheckBox_TopMost.ForeColor = System.Drawing.Color.White;
-            this.CheckBox_TopMost.Location = new System.Drawing.Point(15, 110);
+            this.CheckBox_TopMost.Location = new System.Drawing.Point(15, 185);
             this.CheckBox_TopMost.Name = "CheckBox_TopMost";
             this.CheckBox_TopMost.Size = new System.Drawing.Size(80, 21);
             this.CheckBox_TopMost.TabIndex = 0;
@@ -237,7 +238,7 @@
             this.CheckBox_ShowInTaskbar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_ShowInTaskbar.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.CheckBox_ShowInTaskbar.ForeColor = System.Drawing.Color.White;
-            this.CheckBox_ShowInTaskbar.Location = new System.Drawing.Point(15, 135);
+            this.CheckBox_ShowInTaskbar.Location = new System.Drawing.Point(15, 160);
             this.CheckBox_ShowInTaskbar.Name = "CheckBox_ShowInTaskbar";
             this.CheckBox_ShowInTaskbar.Size = new System.Drawing.Size(116, 21);
             this.CheckBox_ShowInTaskbar.TabIndex = 0;
@@ -275,7 +276,7 @@
             this.CheckBox_ShowIconOnCaptionBar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CheckBox_ShowIconOnCaptionBar.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.CheckBox_ShowIconOnCaptionBar.ForeColor = System.Drawing.Color.White;
-            this.CheckBox_ShowIconOnCaptionBar.Location = new System.Drawing.Point(15, 85);
+            this.CheckBox_ShowIconOnCaptionBar.Location = new System.Drawing.Point(15, 135);
             this.CheckBox_ShowIconOnCaptionBar.Name = "CheckBox_ShowIconOnCaptionBar";
             this.CheckBox_ShowIconOnCaptionBar.Size = new System.Drawing.Size(165, 21);
             this.CheckBox_ShowIconOnCaptionBar.TabIndex = 0;
@@ -308,7 +309,7 @@
             this.Panel_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel_Main.Location = new System.Drawing.Point(0, 0);
             this.Panel_Main.Name = "Panel_Main";
-            this.Panel_Main.Size = new System.Drawing.Size(350, 700);
+            this.Panel_Main.Size = new System.Drawing.Size(350, 750);
             this.Panel_Main.TabIndex = 0;
             this.Panel_Main.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Main_Paint);
             // 
@@ -320,7 +321,7 @@
             this.Panel_Client.Controls.Add(this.Panel_Other);
             this.Panel_Client.Location = new System.Drawing.Point(0, 0);
             this.Panel_Client.Name = "Panel_Client";
-            this.Panel_Client.Size = new System.Drawing.Size(350, 700);
+            this.Panel_Client.Size = new System.Drawing.Size(350, 750);
             this.Panel_Client.TabIndex = 0;
             // 
             // Panel_FormStyle
@@ -328,13 +329,15 @@
             this.Panel_FormStyle.Controls.Add(this.Label_FormStyle);
             this.Panel_FormStyle.Controls.Add(this.Label_FormStyleEnum);
             this.Panel_FormStyle.Controls.Add(this.ComboBox_FormStyleEnum);
+            this.Panel_FormStyle.Controls.Add(this.CheckBox_EnableMinimize);
+            this.Panel_FormStyle.Controls.Add(this.CheckBox_EnableMaximize);
             this.Panel_FormStyle.Controls.Add(this.CheckBox_EnableFullScreen);
             this.Panel_FormStyle.Controls.Add(this.CheckBox_ShowIconOnCaptionBar);
-            this.Panel_FormStyle.Controls.Add(this.CheckBox_TopMost);
             this.Panel_FormStyle.Controls.Add(this.CheckBox_ShowInTaskbar);
+            this.Panel_FormStyle.Controls.Add(this.CheckBox_TopMost);
             this.Panel_FormStyle.Location = new System.Drawing.Point(25, 25);
             this.Panel_FormStyle.Name = "Panel_FormStyle";
-            this.Panel_FormStyle.Size = new System.Drawing.Size(300, 165);
+            this.Panel_FormStyle.Size = new System.Drawing.Size(300, 215);
             this.Panel_FormStyle.TabIndex = 0;
             this.Panel_FormStyle.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_FormStyle_Paint);
             // 
@@ -360,6 +363,38 @@
             this.Label_FormStyleEnum.TabIndex = 0;
             this.Label_FormStyleEnum.Text = "FormStyle:";
             // 
+            // CheckBox_EnableMinimize
+            // 
+            this.CheckBox_EnableMinimize.AutoSize = true;
+            this.CheckBox_EnableMinimize.Checked = true;
+            this.CheckBox_EnableMinimize.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CheckBox_EnableMinimize.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CheckBox_EnableMinimize.ForeColor = System.Drawing.Color.White;
+            this.CheckBox_EnableMinimize.Location = new System.Drawing.Point(15, 60);
+            this.CheckBox_EnableMinimize.Name = "CheckBox_EnableMinimize";
+            this.CheckBox_EnableMinimize.Size = new System.Drawing.Size(118, 21);
+            this.CheckBox_EnableMinimize.TabIndex = 0;
+            this.CheckBox_EnableMinimize.TabStop = false;
+            this.CheckBox_EnableMinimize.Text = "EnableMinimize";
+            this.CheckBox_EnableMinimize.UseVisualStyleBackColor = true;
+            this.CheckBox_EnableMinimize.CheckedChanged += new System.EventHandler(this.CheckBox_EnableMinimize_CheckedChanged);
+            // 
+            // CheckBox_EnableMaximize
+            // 
+            this.CheckBox_EnableMaximize.AutoSize = true;
+            this.CheckBox_EnableMaximize.Checked = true;
+            this.CheckBox_EnableMaximize.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CheckBox_EnableMaximize.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.CheckBox_EnableMaximize.ForeColor = System.Drawing.Color.White;
+            this.CheckBox_EnableMaximize.Location = new System.Drawing.Point(15, 85);
+            this.CheckBox_EnableMaximize.Name = "CheckBox_EnableMaximize";
+            this.CheckBox_EnableMaximize.Size = new System.Drawing.Size(121, 21);
+            this.CheckBox_EnableMaximize.TabIndex = 0;
+            this.CheckBox_EnableMaximize.TabStop = false;
+            this.CheckBox_EnableMaximize.Text = "EnableMaximize";
+            this.CheckBox_EnableMaximize.UseVisualStyleBackColor = true;
+            this.CheckBox_EnableMaximize.CheckedChanged += new System.EventHandler(this.CheckBox_EnableMaximize_CheckedChanged);
+            // 
             // Panel_FormAppearance
             // 
             this.Panel_FormAppearance.Controls.Add(this.Label_FormAppearance);
@@ -377,7 +412,7 @@
             this.Panel_FormAppearance.Controls.Add(this.CheckBox_ShowCaptionBarColor);
             this.Panel_FormAppearance.Controls.Add(this.CheckBox_EnableCaptionBarTransparent);
             this.Panel_FormAppearance.Controls.Add(this.CheckBox_ShowShadowColor);
-            this.Panel_FormAppearance.Location = new System.Drawing.Point(25, 190);
+            this.Panel_FormAppearance.Location = new System.Drawing.Point(25, 240);
             this.Panel_FormAppearance.Name = "Panel_FormAppearance";
             this.Panel_FormAppearance.Size = new System.Drawing.Size(300, 275);
             this.Panel_FormAppearance.TabIndex = 0;
@@ -513,7 +548,7 @@
             this.Panel_FormState.Controls.Add(this.TextBox_BoundsWidth);
             this.Panel_FormState.Controls.Add(this.Label_BoundsSizeSeparator);
             this.Panel_FormState.Controls.Add(this.TextBox_BoundsHeight);
-            this.Panel_FormState.Location = new System.Drawing.Point(25, 465);
+            this.Panel_FormState.Location = new System.Drawing.Point(25, 515);
             this.Panel_FormState.Name = "Panel_FormState";
             this.Panel_FormState.Size = new System.Drawing.Size(300, 150);
             this.Panel_FormState.TabIndex = 0;
@@ -653,7 +688,7 @@
             this.Panel_Other.Controls.Add(this.Label_Other);
             this.Panel_Other.Controls.Add(this.CheckBox_ImmersiveExperience);
             this.Panel_Other.Controls.Add(this.Label_ImmersiveExperience);
-            this.Panel_Other.Location = new System.Drawing.Point(25, 615);
+            this.Panel_Other.Location = new System.Drawing.Point(25, 665);
             this.Panel_Other.Name = "Panel_Other";
             this.Panel_Other.Size = new System.Drawing.Size(300, 60);
             this.Panel_Other.TabIndex = 0;
@@ -705,7 +740,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(350, 700);
+            this.ClientSize = new System.Drawing.Size(350, 750);
             this.Controls.Add(this.Panel_Main);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -774,5 +809,7 @@
         private System.Windows.Forms.CheckBox CheckBox_ImmersiveExperience;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog_ImmersiveExperience;
         private System.Windows.Forms.Label Label_ImmersiveExperience;
+        private System.Windows.Forms.CheckBox CheckBox_EnableMaximize;
+        private System.Windows.Forms.CheckBox CheckBox_EnableMinimize;
     }
 }
