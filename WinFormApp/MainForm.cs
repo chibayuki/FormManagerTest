@@ -85,6 +85,7 @@ namespace WinFormApp
 
             Me.Loaded += LoadedEvents;
             Me.FormStateChanged += FormStateChangedEvents;
+            Me.SizeChanged += SizeChangedEvents;
             Me.Move += MoveEvents;
             Me.Resize += ResizeEvents;
             Me.ThemeChanged += ThemeChangedEvents;
@@ -196,6 +197,13 @@ namespace WinFormApp
 
             //
 
+            CheckBox_SmoothShift.CheckedChanged -= CheckBox_SmoothShift_CheckedChanged;
+            CheckBox_Fade.CheckedChanged -= CheckBox_Fade_CheckedChanged;
+            CheckBox_SmoothShift.Checked = Me.Effect.HasFlag(Com.WinForm.Effect.SmoothShift);
+            CheckBox_Fade.Checked = Me.Effect.HasFlag(Com.WinForm.Effect.Fade);
+            CheckBox_SmoothShift.CheckedChanged += CheckBox_SmoothShift_CheckedChanged;
+            CheckBox_Fade.CheckedChanged += CheckBox_Fade_CheckedChanged;
+
             Label_ImmersiveExperience.Enabled = CheckBox_ImmersiveExperience.Checked;
         }
 
@@ -204,6 +212,38 @@ namespace WinFormApp
             ComboBox_FormStateEnum.SelectedIndexChanged -= ComboBox_FormStateEnum_SelectedIndexChanged;
             ComboBox_FormStateEnum.SelectedIndex = (int)Me.FormState;
             ComboBox_FormStateEnum.SelectedIndexChanged += ComboBox_FormStateEnum_SelectedIndexChanged;
+        }
+
+        private void SizeChangedEvents(object sender, EventArgs e)
+        {
+            Control[] Ctrls = new Control[] { Panel_FormStyle, Panel_FormAppearance, Panel_FormState, Panel_Other };
+
+            int Column = Math.Max(1, Panel_Main.Width / Ctrls[0].Width);
+
+            for (int i = 0; i < Ctrls.Length; i++)
+            {
+                Control Ctrl = Ctrls[i];
+
+                if (i % Column == 0)
+                {
+                    Ctrl.Left = 0;
+                }
+                else
+                {
+                    Ctrl.Left = Ctrls[i - 1].Right;
+                }
+
+                if (i / Column == 0)
+                {
+                    Ctrl.Top = 0;
+                }
+                else
+                {
+                    Ctrl.Top = Ctrls[i - Column].Bottom;
+                }
+            }
+
+            Panel_Client.Size = Com.Geometry.GetMinimumBoundingRectangleOfControls(Ctrls, 0).Size;
         }
 
         private void MoveEvents(object sender, EventArgs e)
@@ -303,6 +343,9 @@ namespace WinFormApp
             //
 
             Label_Other.ForeColor = Me.RecommendColors.Text_INC.ToColor();
+
+            CheckBox_SmoothShift.ForeColor = Me.RecommendColors.Text.ToColor();
+            CheckBox_Fade.ForeColor = Me.RecommendColors.Text.ToColor();
 
             CheckBox_ImmersiveExperience.ForeColor = Me.RecommendColors.Text.ToColor();
             Label_ImmersiveExperience.ForeColor = Me.RecommendColors.Text.ToColor();
@@ -651,6 +694,40 @@ namespace WinFormApp
         }
 
         //
+
+        private void CheckBox_SmoothShift_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                if (Ctrl.Checked)
+                {
+                    Me.Effect |= Com.WinForm.Effect.SmoothShift;
+                }
+                else
+                {
+                    Me.Effect &= (~Com.WinForm.Effect.SmoothShift);
+                }
+            }
+        }
+
+        private void CheckBox_Fade_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox Ctrl = sender as CheckBox;
+
+            if (Ctrl != null)
+            {
+                if (Ctrl.Checked)
+                {
+                    Me.Effect |= Com.WinForm.Effect.Fade;
+                }
+                else
+                {
+                    Me.Effect &= (~Com.WinForm.Effect.Fade);
+                }
+            }
+        }
 
         private Bitmap ImmersiveExperienceBackgroundImage = null;
 
