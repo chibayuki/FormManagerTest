@@ -37,18 +37,6 @@ namespace WinFormApp
             }
         }
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams CP = base.CreateParams;
-
-                CP.Style |= 0x00020000;
-
-                return CP;
-            }
-        }
-
         private void _Ctor(Com.WinForm.FormManager owner)
         {
             InitializeComponent();
@@ -980,7 +968,7 @@ namespace WinFormApp
             {
                 Control Cntr = sender as Control;
                 Control Ctrl = Label_FormStyle;
-                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
+                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width - Ctrl.Left, Ctrl.Top + Ctrl.Height / 2));
             }
         }
 
@@ -990,7 +978,7 @@ namespace WinFormApp
             {
                 Control Cntr = sender as Control;
                 Control Ctrl = Label_FormAppearance;
-                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
+                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width - Ctrl.Left, Ctrl.Top + Ctrl.Height / 2));
             }
 
             using (Pen Border = new Pen(Me.RecommendColors.Border_DEC.ToColor(), 1))
@@ -1009,7 +997,7 @@ namespace WinFormApp
             {
                 Control Cntr = sender as Control;
                 Control Ctrl = Label_FormState;
-                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
+                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width - Ctrl.Left, Ctrl.Top + Ctrl.Height / 2));
             }
 
             using (Pen Border = new Pen(Me.RecommendColors.Border_DEC.ToColor(), 1))
@@ -1031,7 +1019,7 @@ namespace WinFormApp
             {
                 Control Cntr = sender as Control;
                 Control Ctrl = Label_Other;
-                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
+                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width - Ctrl.Left, Ctrl.Top + Ctrl.Height / 2));
             }
         }
 
