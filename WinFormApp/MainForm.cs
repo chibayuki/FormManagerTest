@@ -73,6 +73,7 @@ namespace WinFormApp
 
             Me.Loaded += LoadedEvents;
             Me.FormStateChanged += FormStateChangedEvents;
+            Me.LocationChanged += LocationChangedEvents;
             Me.SizeChanged += SizeChangedEvents;
             Me.Move += MoveEvents;
             Me.Resize += ResizeEvents;
@@ -202,6 +203,26 @@ namespace WinFormApp
             ComboBox_FormStateEnum.SelectedIndexChanged += ComboBox_FormStateEnum_SelectedIndexChanged;
         }
 
+        private void LocationChangedEvents(object sender, EventArgs e)
+        {
+            TextBox_BoundsX.TextChanged -= TextBox_BoundsX_TextChanged;
+            TextBox_BoundsY.TextChanged -= TextBox_BoundsY_TextChanged;
+            TextBox_BoundsWidth.TextChanged -= TextBox_BoundsWidth_TextChanged;
+            TextBox_BoundsHeight.TextChanged -= TextBox_BoundsHeight_TextChanged;
+            TextBox_BoundsX.Text = Me.X.ToString();
+            TextBox_BoundsY.Text = Me.Y.ToString();
+            TextBox_BoundsWidth.Text = Me.Width.ToString();
+            TextBox_BoundsHeight.Text = Me.Height.ToString();
+            TextBox_BoundsX.SelectionStart = TextBox_BoundsX.TextLength;
+            TextBox_BoundsY.SelectionStart = TextBox_BoundsY.TextLength;
+            TextBox_BoundsWidth.SelectionStart = TextBox_BoundsWidth.TextLength;
+            TextBox_BoundsHeight.SelectionStart = TextBox_BoundsHeight.TextLength;
+            TextBox_BoundsX.TextChanged += TextBox_BoundsX_TextChanged;
+            TextBox_BoundsY.TextChanged += TextBox_BoundsY_TextChanged;
+            TextBox_BoundsWidth.TextChanged += TextBox_BoundsWidth_TextChanged;
+            TextBox_BoundsHeight.TextChanged += TextBox_BoundsHeight_TextChanged;
+        }
+
         private void SizeChangedEvents(object sender, EventArgs e)
         {
             Control[] Ctrls = new Control[] { Panel_FormStyle, Panel_FormAppearance, Panel_FormState, Panel_Other };
@@ -232,6 +253,25 @@ namespace WinFormApp
             }
 
             Panel_Client.Size = Com.Geometry.GetMinimumBoundingRectangleOfControls(Ctrls, 0).Size;
+
+            //
+
+            TextBox_BoundsX.TextChanged -= TextBox_BoundsX_TextChanged;
+            TextBox_BoundsY.TextChanged -= TextBox_BoundsY_TextChanged;
+            TextBox_BoundsWidth.TextChanged -= TextBox_BoundsWidth_TextChanged;
+            TextBox_BoundsHeight.TextChanged -= TextBox_BoundsHeight_TextChanged;
+            TextBox_BoundsX.Text = Me.X.ToString();
+            TextBox_BoundsY.Text = Me.Y.ToString();
+            TextBox_BoundsWidth.Text = Me.Width.ToString();
+            TextBox_BoundsHeight.Text = Me.Height.ToString();
+            TextBox_BoundsX.SelectionStart = TextBox_BoundsX.TextLength;
+            TextBox_BoundsY.SelectionStart = TextBox_BoundsY.TextLength;
+            TextBox_BoundsWidth.SelectionStart = TextBox_BoundsWidth.TextLength;
+            TextBox_BoundsHeight.SelectionStart = TextBox_BoundsHeight.TextLength;
+            TextBox_BoundsX.TextChanged += TextBox_BoundsX_TextChanged;
+            TextBox_BoundsY.TextChanged += TextBox_BoundsY_TextChanged;
+            TextBox_BoundsWidth.TextChanged += TextBox_BoundsWidth_TextChanged;
+            TextBox_BoundsHeight.TextChanged += TextBox_BoundsHeight_TextChanged;
         }
 
         private void MoveEvents(object sender, EventArgs e)
@@ -343,6 +383,10 @@ namespace WinFormApp
             Com.WinForm.ControlSubstitution.LabelAsButton(Label_ThemeColor_Value, Label_ThemeColor_Value_Click, Color.Transparent, Me.RecommendColors.Button_DEC.ToColor(), Me.RecommendColors.Button_INC.ToColor(), new Font("微软雅黑", 9F, FontStyle.Underline, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134));
             Com.WinForm.ControlSubstitution.LabelAsButton(Label_CaptionFont_Value, Label_CaptionFont_Value_Click, Color.Transparent, Me.RecommendColors.Button_DEC.ToColor(), Me.RecommendColors.Button_INC.ToColor(), new Font("微软雅黑", 9F, FontStyle.Underline, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134));
             Com.WinForm.ControlSubstitution.LabelAsButton(Label_ImmersiveExperience, Label_ImmersiveExperience_Click, Color.Transparent, Me.RecommendColors.Button_DEC.ToColor(), Me.RecommendColors.Button_INC.ToColor(), new Font("微软雅黑", 9F, FontStyle.Underline, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134), new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134));
+
+            //
+
+            Panel_Client.Refresh();
         }
 
         #endregion
