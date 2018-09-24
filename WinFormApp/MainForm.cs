@@ -242,7 +242,7 @@ namespace WinFormApp
                     Ctrl.Left = Ctrls[i - 1].Right;
                 }
 
-                if (i / Column == 0)
+                if (i < Column)
                 {
                     Ctrl.Top = 0;
                 }
@@ -252,7 +252,7 @@ namespace WinFormApp
                 }
             }
 
-            Panel_Client.Size = Com.Geometry.GetMinimumBoundingRectangleOfControls(Ctrls, 0).Size;
+            Panel_Client.Size = Com.Geometry.GetMinimumBoundingRectangleOfControls(Ctrls).Size;
 
             //
 
