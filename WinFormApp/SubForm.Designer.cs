@@ -40,7 +40,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SubForm";
-            this.Text = "子窗体";
+            this.Text = "子窗口";
             this.ResumeLayout(false);
 
         }

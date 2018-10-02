@@ -2,7 +2,7 @@
 Copyright © 2018 chibayuki@foxmail.com
 
 FormManager测试 (FormManagerTest)
-Version 18.8.21.0000
+Version 18.10.2.1600
 
 This file is part of "FormManager测试" (FormManagerTest)
 

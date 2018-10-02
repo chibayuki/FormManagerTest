@@ -777,7 +777,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "主窗体";
+            this.Text = "主窗口";
             this.Panel_Main.ResumeLayout(false);
             this.Panel_Client.ResumeLayout(false);
             this.Panel_FormStyle.ResumeLayout(false);
