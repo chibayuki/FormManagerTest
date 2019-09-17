@@ -1,4 +1,4 @@
-# FormManager测试 / FormManagerTest
+# FormManager测试 / FormManager Test
 用于测试Com.WinForm.FormManager的程序 / An app for testing Com.WinForm.FormManager.
 
 ### 许可 / License
